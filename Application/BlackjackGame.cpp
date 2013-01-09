@@ -30,7 +30,7 @@ namespace Casino {
         shoe_.Shuffle();
         for(auto player : players_)
         {
-            InitPlayer(player);
+            InitPlayer(*player);
         }
 
         InitPlayer(dealer_);
@@ -41,11 +41,11 @@ namespace Casino {
         //Initial deal, and splitting...
         for(auto player : players_)
         {
-            for(auto playersHand : player)
+            for(auto playersHand : *player)
             {
                 if(playersHand->Splittable() && !playersHand->SplitDeclined())
                 {
-                    auto splitHand = player.Split(*playersHand.get());
+                    auto splitHand = player->Split(*playersHand);
                     splitHand->Add(*dealItr_);
                     dealItr_++;      
                     playersHand->Add(*dealItr_);
@@ -57,33 +57,33 @@ namespace Casino {
         //Fill hands, and betting...
         for(auto player : players_)
         {
-            for(auto playersHand : player)
+            for(auto playersHand : *player)
             {
-                FillHand(*playersHand.get());
+                FillHand(*playersHand);
             }
         }
 
-        FillHand(*dealersHand.get());
+        FillHand(*dealersHand);
 
         if(dealersHand->Busted())
         {
             //Resolve all bets as winners
             for(auto player : players_)
             {
-                for(auto playersHand : player)
+                for(auto playersHand : *player)
                 {
-                    player.Win(playersHand->GetBet());
+                    player->Win(playersHand->GetBet());
                 }
             }
         }
 
         for(auto player: players_)
         {
-            for(auto playersHand : player)
+            for(auto playersHand : *player)
             {
                 if(playersHand->Value() > dealersHand->Value())
                 {
-                    player.Win(playersHand->GetBet());
+                    player->Win(playersHand->GetBet());
                 }
             }
         }
@@ -96,15 +96,15 @@ namespace Casino {
     {
         for(auto player : players_)
         {
-            for(auto playersHand : player)
+            for(auto playersHand : *player)
             {
                 if(playersHand->Blackjack())
                 {
                 }
-                else if(player.Insurance(*playersHand.get()))
+                else if(player->Insurance(*playersHand))
                 {
                 }
-                
+
             }
         }
     }

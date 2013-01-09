@@ -11,7 +11,6 @@ namespace Casino {
     vector<Card*> DeckFactory::GetDeck()
     {
         vector<Card*> deck;
-        auto deck_pos = begin(deck);
         vector<Card::Suite> suites{Card::Suite::SPADES,
             Card::Suite::CLUBS,
             Card::Suite::DIAMONDS,
@@ -27,19 +26,16 @@ namespace Casino {
             for(int rank = 2; rank <= 10; ++rank)
             {
                 auto temp_rank = new Card::ValueRank(rank);
-                *deck_pos = new Card(*temp_rank, suite);
-                ++deck_pos;
+                deck.push_back(new Card(*temp_rank, suite));
             }
 
             //Add the Ace
-            *deck_pos = new AceCard(suite);
-            ++deck_pos;
+            deck.push_back( new AceCard(suite));
 
             for(Card::Rank::RankType face :faces)
             {
                 auto temp_face = new Card::FaceRank(face);
-                *deck_pos =  new FaceCard(*(temp_face), suite);
-                ++deck_pos;
+                deck.push_back(new FaceCard(*(temp_face), suite));
             }
         }
 

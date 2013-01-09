@@ -13,6 +13,6 @@ TEST(ShoeTest, Simple)
 
     for(auto card : s)
     {
-        //cout << card->ToString() << endl;
+        cout << card->ToString() << endl;
     }
 }

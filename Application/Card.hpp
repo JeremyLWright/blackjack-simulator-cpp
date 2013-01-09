@@ -17,7 +17,7 @@ namespace Casino {
 
     class Card {
         public:
-            typedef shared_ptr<Card> Ptr;
+            typedef Card* Ptr;
             class Suite { 
                 public:
                     enum SuiteType {
@@ -84,7 +84,7 @@ namespace Casino {
 
     class FaceCard : public Card {
         public: 
-            typedef shared_ptr<FaceCard> Ptr;
+            typedef FaceCard* Ptr;
             FaceCard(Rank const & rank, Suite const & suite);
             virtual ~FaceCard();
             virtual int SoftValue() const;
@@ -93,7 +93,7 @@ namespace Casino {
 
     class AceCard : public Card {
         public: 
-            typedef shared_ptr<AceCard> Ptr;
+            typedef AceCard* Ptr;
             AceCard(Suite const & suite);
             virtual ~AceCard();
             virtual int SoftValue() const;

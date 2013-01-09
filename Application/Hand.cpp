@@ -103,16 +103,16 @@ namespace Casino {
         return player_;
     }
 
-    shared_ptr<Card> Hand::GetUpCard() const
+    Card::Ptr Hand::GetUpCard() const
     {
         return cards_[0];
     }
-    vector<shared_ptr<Card>>::const_iterator Hand::begin()
+    vector<Card::Ptr>::const_iterator Hand::begin()
     {
         return cards_.begin();
     }
     
-    vector<shared_ptr<Card>>::const_iterator Hand::end()
+    vector<Card::Ptr>::const_iterator Hand::end()
     {
         return cards_.end();
     }
