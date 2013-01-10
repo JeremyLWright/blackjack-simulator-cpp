@@ -45,6 +45,8 @@ namespace Casino {
                     virtual ~Rank(){}
                     virtual string ToString() const = 0;
                     virtual int Value() const = 0;
+                    virtual bool operator<(const Rank& rhs) const;
+                    virtual bool operator==(const Rank& rhs) const;
             };
 
             class FaceRank : public Rank {
@@ -77,6 +79,7 @@ namespace Casino {
             virtual std::string ToString() const;
             virtual bool operator==(const Card& rhs) const;
             virtual bool operator<(const Card& rhs) const;
+
         protected:
             Rank const & _rank;
             Suite const & _suite;

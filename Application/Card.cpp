@@ -39,6 +39,16 @@ namespace Casino {
         return ss.str();
     }
 
+    bool Card::Rank::operator<(const Rank& rhs) const
+    {
+        return (this->Value() < rhs.Value());
+    }
+
+    bool Card::Rank::operator==(const Rank& rhs) const
+    {
+        return (this->Value() == rhs.Value());
+    }
+
     bool Card::Suite::operator==(const Suite& rhs) const
     {
         return (this->_value == rhs._value);
@@ -143,11 +153,13 @@ namespace Casino {
 
     bool Card::operator==(const Card& rhs) const
     {
+        cerr << "comparing " << rhs._rank.Value() << " to " << _rank.Value() << endl;
         return (this->_rank.Value() == rhs._rank.Value()) && (this->_suite == rhs._suite);
     }
 
     bool Card::operator<(const Card& rhs) const
     {
+        cerr << "comparing " << rhs._rank.Value() << " to " << _rank.Value() << endl;
         return ((this->_rank.Value()) < rhs._rank.Value());
     }
 
