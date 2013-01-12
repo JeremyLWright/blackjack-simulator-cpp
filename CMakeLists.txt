@@ -5,7 +5,7 @@ SET(CMAKE_CXX_FLAGS "-std=gnu++11 -g3 -ggdb") #Turn on C++11 and advanced debugg
 
 set(UNIT_TESTS tests/test1.cpp)
 set(MAIN_FILE main.cpp)
-set(CODE_FILES Application/Game.cpp)
+set(APPLICATION_CODE_FILES Application/Game.cpp)
 
 ##############################################################################
 ###### YOU ARE NOT REQUIRED TO EDIT BELOW THIS LINE               ############
@@ -18,6 +18,8 @@ include_directories(.)
 
 add_executable(blackjack ${MAIN_FILE})
 
-add_executable(unit-test ${UNIT_TESTS})
-target_link_libraries(unit-test gtest gtest_main rt pthread )
+add_library(application_code ${APPLICATION_CODE_FILES})
+
+add_executable(unit-test ${UNIT_TESTS} )
+target_link_libraries(unit-test gtest gtest_main rt pthread application_code)
 
