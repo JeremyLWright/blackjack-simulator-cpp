@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 2.6)
 
 
-SET(CMAKE_CXX_FLAGS "-std=gnu++11") #Turn on C++11 Support
+SET(CMAKE_CXX_FLAGS "-std=gnu++11 -g3 -ggdb") #Turn on C++11 and advanced debugging support
 
 set(UNIT_TESTS tests/test1.cpp)
 set(MAIN_FILE main.cpp)
+set(CODE_FILES Application/Game.cpp)
 
 ##############################################################################
-###### YOU ARE NOT REQUIRED TO EDIT BELOW THIS LINE FOR PROJECT 2 ############
+###### YOU ARE NOT REQUIRED TO EDIT BELOW THIS LINE               ############
 ##############################################################################
 
-#add_subdirectory(gtest) #Build all the gtest stuff
-include_directories(gtest/include)
+include_directories(gmock/gtest/include)
 add_subdirectory(gmock) #Build all the gtest stuff
 include_directories(gmock/include)
 include_directories(.)
