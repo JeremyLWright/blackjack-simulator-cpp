@@ -17,6 +17,7 @@ include_directories(gmock/include)
 include_directories(.)
 
 add_executable(blackjack ${MAIN_FILE})
+target_link_libraries(blackjack application_code)
 
 add_library(application_code ${APPLICATION_CODE_FILES})
 
