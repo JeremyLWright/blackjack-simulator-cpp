@@ -4,7 +4,7 @@ namespace Application {
     {
     }
 
-    virtual ~Game ()
+    Game::~Game ()
     {
     }
 
