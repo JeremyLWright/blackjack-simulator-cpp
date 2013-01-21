@@ -1,18 +1,21 @@
-/**
- * @brief Main file for CSE 394
- *
- * @par
- * Copyright Jeremy Wright (c) 2012 
- * Creative Commons Attribution-ShareAlike 3.0 Unported License.
- */
+#ifndef _MAIN
+#define _MAIN
 
-
-#include <iostream>
-
-using namespace std;
+#include "Application/BlackjackGame.hpp"
+#include "Application/BlackjackPlayer.hpp"
+#include "Application/Table.hpp"
 
 int main(int argc, const char *argv[])
 {
-    cout << "Hello world" << endl; 
+    game::Table* mainTable = new game::Table();
+    game::BlackjackPlayer* Jeremy = new game::BlackjackPlayer();
+    mainTable->AddPlayer(Jeremy);
+    game::BlackjackGame game(game::Shoe(4, 3), mainTable);
+    for(int i = 0; i < 10; ++i)
+    {
+        game.Play();
+    }
     return 0;
 }
+
+#endif /* end of include guard: _MAIN */
