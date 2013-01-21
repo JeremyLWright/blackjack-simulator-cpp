@@ -1,5 +1,5 @@
 /**
- * @brief Top-level game which runs Blackjack
+ * @brief Top-level Casino which runs Blackjack
  *
  * @par
  * Copyright Jeremy Wright (c) 2012 
@@ -15,7 +15,7 @@
 #include "Table.hpp"
 #include "Hand.hpp"
 using namespace std;
-namespace game {
+namespace Casino {
     class BlackjackGame {
     public:
         BlackjackGame (Shoe shoe, Table table);

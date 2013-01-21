@@ -13,26 +13,26 @@
 #include <ratio>
 #include <utility>
 using namespace std;
-namespace game {
-    class Outcome {
+namespace Casino {
+    class Odds {
     public:
-        Outcome (string Name, pair<intmax_t, intmax_t> Odds);
-        virtual ~Outcome();
-        friend int operator*(Outcome const & lhs, intmax_t Amount);
-        friend int operator*(intmax_t Amount, Outcome const & rhs);
+        Odds (string Name, pair<int, int> Odds);
+        virtual ~Odds();
+        friend int operator*(Odds const & lhs, int Amount);
+        friend int operator*(int Amount, Odds const & rhs);
         
-        bool operator==(Outcome const & rhs) const;
-        bool operator!=(Outcome const & rhs) const;
+        bool operator==(Odds const & rhs) const;
+        bool operator!=(Odds const & rhs) const;
         
         string ToString() const;
 
     private:
         string name_;
-        pair<intmax_t, intmax_t> odds_;
+        pair<int, int> odds_;
 
     };
 
     
-} /* game */
+} /* Casino */
 
 #endif /* end of include guard: _OUTCOME */

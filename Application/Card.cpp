@@ -7,7 +7,7 @@
 #include "Card.hpp"
 using namespace std;
 
-namespace game {
+namespace Casino {
 
     Card::Card(int rank, Suite suite):
         _rank(rank),

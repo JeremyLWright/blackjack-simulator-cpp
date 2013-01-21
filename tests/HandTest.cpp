@@ -5,7 +5,7 @@
 #include "Card.hpp"
 #include <memory>
 
-using namespace game;
+using namespace Casino;
 
 TEST(HandTest, ValueTests)
 {

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "Table.hpp"
 #include "BlackjackPlayer.hpp"
-using namespace game;
+using namespace Casino;
 
 TEST(Tables, PlaceBet)
 {

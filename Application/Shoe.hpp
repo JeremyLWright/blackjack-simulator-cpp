@@ -11,7 +11,7 @@
 
 using namespace std;
 
-namespace game {
+namespace Casino {
 
     class Shoe {
         public:
@@ -30,6 +30,6 @@ namespace game {
     template <class C> auto begin(Shoe& s) -> decltype(s.begin());
     template <class C> auto end(Shoe& s) -> decltype(s.end());
 #endif
-} /* game */
+} /* Casino */
 #endif /* end of include guard: _SHOE */
 

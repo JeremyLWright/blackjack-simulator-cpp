@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 using namespace std;
-using namespace game;
+using namespace Casino;
 TEST(Outcomes, WinAmounts)
 {
     Outcome o("Normal", make_pair(3,2));

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-namespace game {
+namespace Casino {
     Shoe::Shoe(int decks, int stopDeal )
     {
         for(int i = 0; i < decks; ++i)
@@ -43,4 +43,4 @@ namespace game {
     }
 
     
-} /* game */
+} /* Casino */

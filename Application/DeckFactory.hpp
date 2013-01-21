@@ -9,13 +9,13 @@
 #ifndef _DECKFACTORY
 #define _DECKFACTORY
 
-namespace game {
+namespace Casino {
 
     class DeckFactory {
         public:
         static std::array<std::shared_ptr<Card>, 52> GetDeck();
     };
 
-} /* game */
+} /* Casino */
 
 #endif /* end of include guard: _DECKFACTORY */

@@ -1,5 +1,5 @@
 /**
- * @brief Provides the Player interface for a blackjack game
+ * @brief Provides the Player interface for a blackjack Casino
  *
  * @par
  * Copyright Jeremy Wright (c) 2012 
@@ -12,7 +12,7 @@
 #include "Bet.hpp"
 #include "Hand.hpp"
 
-namespace game {
+namespace Casino {
     class BlackjackPlayer {
     public:
         explicit BlackjackPlayer (Table& table);
@@ -33,13 +33,13 @@ namespace game {
         vector<shared_ptr<Hand>>::iterator begin();
         vector<shared_ptr<Hand>>::iterator end();
     private:
-        intmax_t stake_;
-        intmax_t currentRound_;
-        intmax_t roundsToGo_;
+        int stake_;
+        int currentRound_;
+        int roundsToGo_;
         Table& table_;
         vector<shared_ptr<Hand>> hands_;
     };
     
-} /* game */
+} /* Casino */
 
 #endif /* end of include guard: _BLACKJACKPLAYER */

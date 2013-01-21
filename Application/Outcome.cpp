@@ -1,7 +1,7 @@
-#include "Outcome.hpp"
+#include "Odds.hpp"
 #include <sstream>
-namespace game {
-    Outcome::Outcome(string Name, pair<intmax_t, intmax_t> Odds):
+namespace Casino {
+    Odds::Odds(string Name, pair<int, int> Odds):
 #if __clang__
         name_(Name),
         odds_(Odds)
@@ -13,35 +13,35 @@ namespace game {
         
     }
 
-    Outcome::~Outcome()
+    Odds::~Odds()
     {
     }
 
-    bool Outcome::operator==(Outcome const & rhs) const
+    bool Odds::operator==(Odds const & rhs) const
     {
         return (this->ToString() == rhs.ToString());  
     }
 
-    bool Outcome::operator!=(Outcome const & rhs) const
+    bool Odds::operator!=(Odds const & rhs) const
     {
         return !this->operator==(rhs);
     }
 
-    string Outcome::ToString() const
+    string Odds::ToString() const
     {
         stringstream ss;
         ss << name_ << " (" << odds_.first << ":" << odds_.second << ")";
         return ss.str();
     }
     
-    int operator*(intmax_t Amount, Outcome const & rhs) 
+    int operator*(int Amount, Odds const & rhs) 
     {
         return (Amount * rhs.odds_.first)/rhs.odds_.second;
     }
     
-    int operator*(Outcome const & lhs, intmax_t Amount)
+    int operator*(Odds const & lhs, int Amount)
     {
         return operator*(Amount, lhs);
     }
 
-} /* game */
+} /* Casino */

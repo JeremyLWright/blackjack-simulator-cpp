@@ -9,7 +9,7 @@ using namespace std;
 
 TEST(DeckFactoryTest, Simple)
 {
-    auto deck = game::DeckFactory::GetDeck();
+    auto deck = Casino::DeckFactory::GetDeck();
     for(auto card : deck)
     {
     }

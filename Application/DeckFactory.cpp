@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace game {
+namespace Casino {
     array<shared_ptr<Card>,52> DeckFactory::GetDeck()
     {
         array<shared_ptr<Card>, 52> deck;
@@ -46,4 +46,4 @@ namespace game {
 
         return deck;
     }
-} /* game */
+} /* Casino */

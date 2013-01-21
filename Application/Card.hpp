@@ -10,7 +10,7 @@
 
 #include <string>
 #include <utility>
-namespace game {
+namespace Casino {
 
     class Card {
         public:

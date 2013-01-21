@@ -11,7 +11,7 @@
 #include <vector>
 #include <memory>
 #include "Bet.hpp"
-namespace game {
+namespace Casino {
 
     using namespace std;
     class Card;
@@ -44,6 +44,6 @@ namespace game {
             BlackjackPlayer& player_;
     };
 
-} /* game */
+} /* Casino */
 
 #endif /* end of include guard: _HAND */

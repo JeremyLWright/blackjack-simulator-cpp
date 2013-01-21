@@ -3,7 +3,7 @@
 
 using namespace std;
 namespace Game {
-    TableLimitException::TableLimitException(intmax_t currentBetAmount, intmax_t currentCosts, intmax_t tableLimit):
+    TableLimitException::TableLimitException(int currentBetAmount, int currentCosts, int tableLimit):
         logic_error("Current Bet Exceeds Table Limit"),
         betAmount_{currentBetAmount},
         tableCost_{currentCosts},
@@ -21,7 +21,7 @@ namespace Game {
         return ss.str().c_str();
     }
 
-    Table::Table(intmax_t limit):
+    Table::Table(int limit):
         limit_{limit}
     {
     }
@@ -54,7 +54,7 @@ namespace Game {
         return (Cost() + bet.WinAmount() < limit_);
     }
 
-    intmax_t Table::Cost() const
+    int Table::Cost() const
     {
         auto total = 0;
         for(auto bet : bets_)

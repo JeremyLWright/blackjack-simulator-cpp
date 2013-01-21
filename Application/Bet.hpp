@@ -9,26 +9,25 @@
 #ifndef _BET
 #define _BET
 
-#include "Outcome.hpp"
+#include "Odds.hpp"
 #include <string>
-#include <memory>
 using namespace std;
 
-namespace game {
+namespace Casino {
     class Bet {
     public:
         Bet();
-        Bet (intmax_t Amount, Outcome odds);
+        Bet (int Amount, Odds odds);
         virtual ~Bet ();
-        virtual intmax_t WinAmount() const;
-        virtual intmax_t LoseAmount() const;
+        virtual int WinAmount() const;
+        virtual int LoseAmount() const;
         virtual string ToString() const;
 
     private:
-        intmax_t amount_;
-        Outcome outcome_;
+        int amount_;
+        Odds outcome_;
     };
     
-} /* game */
+} /* Casino */
 
 #endif /* end of include guard: _BET */

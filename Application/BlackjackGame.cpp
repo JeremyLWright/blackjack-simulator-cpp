@@ -1,6 +1,6 @@
 #include "BlackjackGame.hpp"
 #include "Card.hpp"
-namespace game {
+namespace Casino {
     BlackjackGame::BlackjackGame (Shoe shoe, Table table):
         shoe_(shoe),
         table_(table),
@@ -142,7 +142,7 @@ namespace game {
 
     string BlackjackGame::ToString()
     {
-        return "It's a game...";
+        return "It's a Casino...";
     }
 
-} /* game */
+} /* Casino */

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace game {
+namespace Casino {
     BlackjackPlayer::BlackjackPlayer(Table& table):
         stake_{0},
         currentRound_{0},
@@ -102,4 +102,4 @@ namespace game {
 
 
 
-} /* game */
+} /* Casino */

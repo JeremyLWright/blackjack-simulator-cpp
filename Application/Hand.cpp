@@ -4,7 +4,7 @@
 #include "Card.hpp"
 #include "Hand.hpp"
 
-namespace game {
+namespace Casino {
     Hand::Hand(BlackjackPlayer& player):
         aceCount_{0},
         player_(player)
@@ -116,4 +116,4 @@ namespace game {
     {
         return cards_.end();
     }
-} /* game */
+} /* Casino */

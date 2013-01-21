@@ -8,7 +8,7 @@ using namespace std;
 
 TEST(ShoeTest, Simple)
 {
-    game::Shoe s(4, 1);
+    Casino::Shoe s(4, 1);
     s.Shuffle();
 
     for(auto card : s)
