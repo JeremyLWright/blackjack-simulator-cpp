@@ -23,13 +23,19 @@ namespace Casino {
             Card::Suite::CLUBS,
             Card::Suite::DIAMONDS,
             Card::Suite::HEARTS};
+        
+        vector<Card::Rank::RankType> faces{Card::Rank::JACK,
+            Card::Rank::QUEEN,
+            Card::Rank::KING,
+            Card::Rank::ACE};
 #endif
 
         for(Card::Suite suite : suites)
         {
             for(int rank = 2; rank <= 10; ++rank)
             {
-                *deck_pos = make_shared<Card>(Card(rank, suite));
+                auto temp_rank = new Card::ValueRank(rank);
+                *deck_pos = make_shared<Card>(Card(*temp_rank, suite));
                 ++deck_pos;
             }
 
@@ -37,9 +43,10 @@ namespace Casino {
             *deck_pos = make_shared<AceCard>(AceCard(suite));
             ++deck_pos;
 
-            for(int faces = 11; faces <= 13; ++faces)
+            for(Card::Rank::RankType face :faces)
             {
-                *deck_pos = make_shared<FaceCard>(FaceCard(faces, suite));
+                auto temp_face = new Card::FaceRank(face);
+                *deck_pos = make_shared<FaceCard>(FaceCard(*(temp_face), suite));
                 ++deck_pos;
             }
         }

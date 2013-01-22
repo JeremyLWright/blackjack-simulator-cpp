@@ -17,7 +17,7 @@
 
 using namespace std;
 
-namespace Game {
+namespace Casino {
 
     struct TableLimitException : public std::logic_error
     {

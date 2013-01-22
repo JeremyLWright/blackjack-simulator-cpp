@@ -10,122 +10,76 @@
 
 #include <string>
 #include <utility>
+using namespace std;
+
 namespace Casino {
 
     class Card {
         public:
-        class Suite { 
-            public:
-                enum SuiteType {
-                    CLUBS,
-                    DIAMONDS,
-                    HEARTS,
-                    SPADES
-                };
+            class Suite { 
+                public:
+                    enum SuiteType {
+                        CLUBS,
+                        DIAMONDS,
+                        HEARTS,
+                        SPADES
+                    };
 
-                Suite(SuiteType value):
-                    _value(value)
-                {
-                }
+                    Suite(SuiteType value);
+                    string ToString() const;
+                    virtual bool operator==(const Suite& rhs) const;
+                private:
+                    SuiteType _value;
+            };
 
-                string ToString() const
-                {
-                    stringstream ss;
-                    switch(_value)
-                    {
-                        case CLUBS:
-                            ss << " of Clubs";
-                            break;
-                        case DIAMONDS:
-                            ss << " of Diamonds";
-                            break;
-                        case HEARTS:
-                            ss << " of Hearts";
-                            break;
-                        case SPADES:
-                            ss << " of Spades";
-                            break;
-                        default:
-                            throw logic_error("Invalid Card::Suite");
-                            break;
-                    }
-                    return ss.str();
-                }
+            class Rank { 
+                public:
+                    enum RankType {
+                        JACK,
+                        QUEEN,
+                        KING,
+                        ACE,
+                    };
+                    virtual string ToString() const = 0;
+                    virtual int Value() const = 0;
+            };
 
-            private:
-                SuiteTypes _value;
-        };
-        class Rank { 
-            public:
-                enum RankType {
-                    JACK,
-                    QUEEN,
-                    KING,
-                    ACE,
-                    NONE
-                };
+            class FaceRank : public Rank {
+                public:
+                    FaceRank(Card::Rank::RankType value);
+                    virtual string ToString() const;
+                    virtual int Value() const;
+                private:
+                    RankType value_;
+            };
 
-                Rank(RankType value):
-                    _rankvalue(value)
-            {
-            }
-
-                Rank(int value):
-                    _rankvalue(NONE),
-                    _intvalue(value)
-            {
-            }
+            class ValueRank : public Rank {
+                public:
+                    ValueRank(int value);
+                    virtual string ToString() const;
+                    virtual int Value() const;
+                private:
+                    int value_;
+            };
 
 
-                string ToString() const
-                {
-                    stringstream ss;
-                    switch(_rankvalue)
-                    {
-                        case JACK:
-                            ss << "J";
-                            break;
-                        case QUEEN:
-                            ss << "Q";
-                            break;
-                        case KING:
-                            ss << "K";
-                            break;
-                        case ACE:
-                            ss << "A";
-                            break;
-                        case NONE: //Intentional fallthrough
-                        default:
-                            ss << _intvalue;
-                            break;
-
-                    }
-                    return ss.str();
-                }
-
-            private:
-                RankTypes _rankvalue;
-                int _intvalue;
-        };
-
-
-        Card(int rank, Suite suite);
-        virtual ~Card();
-        virtual int rank();
-        virtual int SoftValue() const;
-        virtual int HardValue() const;
-        virtual bool OfferInsurance() const;
-        virtual std::string ToString();
-        virtual bool operator==(const Card& rhs) const;
-        virtual bool operator<(const Card& rhs) const;
+            Card(Rank const & rank, Suite const & suite);
+            virtual ~Card();
+            virtual int rank() const ;
+            virtual int SoftValue() const;
+            virtual int HardValue() const;
+            virtual bool OfferInsurance() const;
+            virtual std::string ToString() const;
+            virtual bool operator==(const Card& rhs) const;
+            virtual bool operator<(const Card& rhs) const;
         protected:
-        Rank _rank;
-        Suite _suite;
+            Rank const & _rank;
+            Suite const & _suite;
     };
 
     class FaceCard : public Card {
         public: 
-            FaceCard(Rank rank, Suite suite);
+            FaceCard(Rank const & rank, Suite const & suite);
             virtual ~FaceCard();
             virtual int SoftValue() const;
             virtual int HardValue() const;
@@ -133,7 +87,7 @@ namespace Casino {
 
     class AceCard : public Card {
         public: 
-            AceCard(Suite suite);
+            AceCard(Suite const & suite);
             virtual ~AceCard();
             virtual int SoftValue() const;
             virtual int HardValue() const;

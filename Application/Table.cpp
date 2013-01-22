@@ -2,7 +2,7 @@
 #include <memory>
 
 using namespace std;
-namespace Game {
+namespace Casino {
     TableLimitException::TableLimitException(int currentBetAmount, int currentCosts, int tableLimit):
         logic_error("Current Bet Exceeds Table Limit"),
         betAmount_{currentBetAmount},

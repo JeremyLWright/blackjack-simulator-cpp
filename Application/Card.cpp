@@ -9,26 +9,105 @@ using namespace std;
 
 namespace Casino {
 
-    Card::Card(int rank, Suite suite):
+    /** Suite Methods **/
+    Card::Suite::Suite(SuiteType value):
+        _value(value)
+    {
+    }
+
+    string Card::Suite::ToString() const
+    {
+        stringstream ss;
+        switch(_value)
+        {
+            case CLUBS:
+                ss << " of Clubs";
+                break;
+            case DIAMONDS:
+                ss << " of Diamonds";
+                break;
+            case HEARTS:
+                ss << " of Hearts";
+                break;
+            case SPADES:
+                ss << " of Spades";
+                break;
+            default:
+                throw logic_error("Invalid Card::Suite");
+                break;
+        }
+        return ss.str();
+    }
+
+    bool Card::Suite::operator==(const Suite& rhs) const
+    {
+        return (this->_value == rhs._value);
+    }
+
+    /** Rank Methods **/
+    Card::FaceRank::FaceRank(Card::Rank::RankType value):
+        value_(value)
+    {
+    }
+
+    Card::ValueRank::ValueRank(int value):
+        value_(value)
+    {
+    }
+
+
+    string Card::FaceRank::ToString() const
+    {
+        stringstream ss;
+        switch(value_)
+        {
+            case JACK:
+                ss << "J";
+                break;
+            case QUEEN:
+                ss << "Q";
+                break;
+            case KING:
+                ss << "K";
+                break;
+            case ACE:
+                ss << "A";
+                break;
+        }
+        return ss.str();
+    }
+
+    int Card::FaceRank::Value() const
+    {
+        return 10;
+    }
+
+    int Card::ValueRank::Value() const
+    {
+        return value_;
+    }
+
+    /** Card Methods **/
+    Card::Card(Rank const & rank, Suite const & suite):
         _rank(rank),
         _suite(suite)
     {
     }
- 
+
     Card::~Card()
     {
     }
-  
-    string Card::ToString()
+
+    string Card::ToString() const
     {
         stringstream ss;
-        ss << _rank->ToString() << " of " << _suit->ToString();
+        ss << _rank.ToString() << " of " << _suite.ToString();
         return ss.str();
     }
-    
-    int Card::rank()
+
+    int Card::rank() const
     {
-        return _rank;
+        return _rank.Value();
     }
 
     int Card::SoftValue() const
@@ -38,25 +117,25 @@ namespace Casino {
 
     int Card::HardValue() const
     {
-        return _rank;
+        return _rank.Value();
     }
 
     bool Card::OfferInsurance() const
     {
         return false;
     }
-        
+
     bool Card::operator==(const Card& rhs) const
     {
-        return (this->_rank == rhs._rank) && (this->_suite == rhs._suite);
+        return (this->_rank.Value() == rhs._rank.Value()) && (this->_suite == rhs._suite);
     }
 
     bool Card::operator<(const Card& rhs) const
     {
-        return ((this->_rank) < rhs._rank);
+        return ((this->_rank.Value()) < rhs._rank.Value());
     }
 
-    FaceCard::FaceCard(int rank, Suite suite):
+    FaceCard::FaceCard(Rank const & rank, Suite const & suite):
         Card(rank, suite)
     {
     }
@@ -76,13 +155,14 @@ namespace Casino {
         return 10;
     }
 
-    AceCard::AceCard(Suite suite):
-        Card(this->HardValue(), suite)
+    AceCard::AceCard(Suite const & suite):
+        Card(*(new FaceRank(Card::Rank::ACE)), suite)
     {
     }
 
     AceCard::~AceCard()
     {
+        delete &_rank;
     }
 
     int AceCard::SoftValue() const
@@ -94,11 +174,11 @@ namespace Casino {
     {
         return 11;
     }
-    
+
     bool AceCard::OfferInsurance() const
     {
         return true;
     }
 
 }
-   
+

@@ -11,7 +11,7 @@ set(APPLICATION_CODE_FILES
     Application/Shoe.cpp 
     Application/Hand.cpp 
     Application/Bet.cpp 
-    Application/Outcome.cpp 
+    Application/Odds.cpp 
     Application/Table.cpp 
     Application/BlackjackPlayer.cpp 
     Application/BlackjackGame.cpp)
