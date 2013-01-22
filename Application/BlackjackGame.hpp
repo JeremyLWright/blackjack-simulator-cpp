@@ -18,7 +18,7 @@ using namespace std;
 namespace Casino {
     class BlackjackGame {
     public:
-        BlackjackGame (Shoe shoe, Table table);
+        BlackjackGame (Shoe& shoe, Table& table);
         virtual ~BlackjackGame ();
         virtual void AddPlayer(BlackjackPlayer&& player);
         virtual void Cycle();
@@ -27,8 +27,8 @@ namespace Casino {
         virtual string ToString();
     private:
         void InitPlayer(BlackjackPlayer& player);
-        Shoe shoe_;
-        Table table_;
+        Shoe& shoe_;
+        Table& table_;
         BlackjackPlayer dealer_;
         Shoe::itr_type dealItr_;
         vector<BlackjackPlayer> players_;

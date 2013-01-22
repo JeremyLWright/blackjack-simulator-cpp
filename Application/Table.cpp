@@ -30,22 +30,21 @@ namespace Casino {
     {
     }
 
-    void Table::AddPlayer(Player& player)
+    void Table::AddPlayer(BlackjackPlayer* player)
     {
-        _players.push_back(&player);
+        players_.push_back(player);
     }
 
-    void Table::PlaceBet(Bet& bet, Hand& hand)
+    void Table::PlaceBet(Bet* bet, Hand* hand)
     {
-        if(IsValid(bet))
+        if(IsValid(*bet))
         {
-            auto sharedBet = make_shared<Bet>(bet);
-            bets_.push_back(sharedBet);    
-            hand.SetBet(sharedBet);
+            bets_.push_back(bet);    
+            hand->SetBet(*bet);
         }
         else
         {
-            throw TableLimitException(bet.WinAmount(), Cost(), limit_);
+            throw TableLimitException(bet->WinAmount(), Cost(), limit_);
         }
     }
 

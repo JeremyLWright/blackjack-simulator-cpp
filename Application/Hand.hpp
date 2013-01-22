@@ -11,36 +11,36 @@
 #include <vector>
 #include <memory>
 #include "Bet.hpp"
+#include "Card.hpp"
 namespace Casino {
 
     using namespace std;
-    class Card;
-    class AceCard;
     class BlackjackPlayer;
     class Hand {
         public:
+            typedef shared_ptr<Hand> Ptr;
             explicit Hand (BlackjackPlayer&);
             virtual ~Hand ();
-            void Add(shared_ptr<Card> card);
-            void Add(shared_ptr<AceCard> card);
+            void Add(Card::Ptr card);
+            void Add(AceCard::Ptr card);
             int Value() const;
             int Size() const;
             bool Blackjack() const;
             bool Busted() const;
-            void SetBet(shared_ptr<Bet> ante);
+            void SetBet(Bet& ante);
             BlackjackPlayer& GetPlayer() const;
             bool Splittable();
             bool SplitDeclined() const;
-            shared_ptr<Bet> GetBet() const;
-            shared_ptr<Card> GetUpCard() const;
-            vector<shared_ptr<Card>>::const_iterator begin();
-            vector<shared_ptr<Card>>::const_iterator end();
+            Bet& GetBet() const;
+            Card::Ptr GetUpCard() const;
+            vector<Card::Ptr>::const_iterator begin();
+            vector<Card::Ptr>::const_iterator end();
 
         private:
             int aceCount_;
             bool splitDeclined_;
-            vector<shared_ptr<Card>> cards_;
-            shared_ptr<Bet> ante_;
+            vector<Card::Ptr> cards_;
+            Bet* ante_;
             BlackjackPlayer& player_;
     };
 

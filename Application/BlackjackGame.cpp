@@ -1,7 +1,7 @@
 #include "BlackjackGame.hpp"
 #include "Card.hpp"
 namespace Casino {
-    BlackjackGame::BlackjackGame (Shoe shoe, Table table):
+    BlackjackGame::BlackjackGame (Shoe& shoe, Table& table):
         shoe_(shoe),
         table_(table),
         dealer_(table)
@@ -72,7 +72,7 @@ namespace Casino {
             {
                 for(auto playersHand : player)
                 {
-                    player.Win(*playersHand->GetBet().get());
+                    player.Win(playersHand->GetBet());
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace Casino {
             {
                 if(playersHand->Value() > dealersHand->Value())
                 {
-                    player.Win(*playersHand->GetBet().get());
+                    player.Win(playersHand->GetBet());
                 }
             }
         }
@@ -131,7 +131,7 @@ namespace Casino {
         }
         if(hand.Busted())
         {
-            hand.GetPlayer().Lose(*hand.GetBet().get());
+            hand.GetPlayer().Lose(hand.GetBet());
         }
     }
 

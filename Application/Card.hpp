@@ -10,12 +10,14 @@
 
 #include <string>
 #include <utility>
+#include <memory>
 using namespace std;
 
 namespace Casino {
 
     class Card {
         public:
+            typedef shared_ptr<Card> Ptr;
             class Suite { 
                 public:
                     enum SuiteType {
@@ -40,6 +42,7 @@ namespace Casino {
                         KING,
                         ACE,
                     };
+                    virtual ~Rank(){}
                     virtual string ToString() const = 0;
                     virtual int Value() const = 0;
             };
@@ -47,6 +50,7 @@ namespace Casino {
             class FaceRank : public Rank {
                 public:
                     FaceRank(Card::Rank::RankType value);
+                    virtual ~FaceRank();
                     virtual string ToString() const;
                     virtual int Value() const;
                 private:
@@ -56,6 +60,7 @@ namespace Casino {
             class ValueRank : public Rank {
                 public:
                     ValueRank(int value);
+                    virtual ~ValueRank();
                     virtual string ToString() const;
                     virtual int Value() const;
                 private:
@@ -79,6 +84,7 @@ namespace Casino {
 
     class FaceCard : public Card {
         public: 
+            typedef shared_ptr<FaceCard> Ptr;
             FaceCard(Rank const & rank, Suite const & suite);
             virtual ~FaceCard();
             virtual int SoftValue() const;
@@ -87,6 +93,7 @@ namespace Casino {
 
     class AceCard : public Card {
         public: 
+            typedef shared_ptr<AceCard> Ptr;
             AceCard(Suite const & suite);
             virtual ~AceCard();
             virtual int SoftValue() const;

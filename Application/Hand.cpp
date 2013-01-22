@@ -15,12 +15,12 @@ namespace Casino {
     {
     }
 
-    void Hand::Add(shared_ptr<Card> card)
+    void Hand::Add(Card::Ptr card)
     {
         cards_.push_back(card);
     }
     
-    void Hand::Add(shared_ptr<AceCard> card)
+    void Hand::Add(AceCard::Ptr card)
     {
         cards_.push_back(card);
         aceCount_++;
@@ -88,14 +88,14 @@ namespace Casino {
         return splitDeclined_;
     }
 
-    void Hand::SetBet(shared_ptr<Bet> ante)
+    void Hand::SetBet(Bet& ante)
     {
-        ante_ = ante;
+        ante_ = &ante;
     }
 
-    shared_ptr<Bet> Hand::GetBet() const
+    Bet& Hand::GetBet() const
     {
-        return ante_;
+        return *ante_;
     }
     
     BlackjackPlayer& Hand::GetPlayer() const

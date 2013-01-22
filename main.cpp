@@ -4,16 +4,21 @@
 #include "Application/BlackjackGame.hpp"
 #include "Application/BlackjackPlayer.hpp"
 #include "Application/Table.hpp"
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, const char *argv[])
 {
-    game::Table* mainTable = new game::Table();
-    game::BlackjackPlayer* Jeremy = new game::BlackjackPlayer();
+    Casino::Table* mainTable = new Casino::Table();
+    Casino::BlackjackPlayer* Jeremy = new Casino::BlackjackPlayer(*mainTable);
     mainTable->AddPlayer(Jeremy);
-    game::BlackjackGame game(game::Shoe(4, 3), mainTable);
+    auto shoe = new Casino::Shoe(4, 3);
+    Casino::BlackjackGame game(*shoe, *mainTable);
     for(int i = 0; i < 10; ++i)
     {
-        game.Play();
+        game.Cycle();
+        cout << "Play again" << endl;
     }
     return 0;
 }

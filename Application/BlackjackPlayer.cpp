@@ -1,4 +1,5 @@
 #include "BlackjackPlayer.hpp"
+#include "Table.hpp"
 #include <memory>
 
 using namespace std;
@@ -36,9 +37,12 @@ namespace Casino {
 
     void BlackjackPlayer::PlaceBets()
     {
-        stake_ -= 1000;
-        auto bet = Bet(1000, Outcome("Jeremy'sBet", make_pair(3,2)));
-        table_.PlaceBet(move(bet), *hands_[0]);
+        for(auto hand : hands_)
+        {
+            stake_ -= 1000;
+            auto bet = new Bet(1000, Odds("Jeremy's Bet", make_pair(3,2)));
+            table_.PlaceBet(bet, hand.get());
+        }
     }
 
     void BlackjackPlayer::Win(Bet const & bet)
@@ -65,8 +69,8 @@ namespace Casino {
     shared_ptr<Hand> BlackjackPlayer::Split(Hand& hand) 
     {
         auto splitHand = make_shared<Hand>(Hand(*this));
-        auto splitBet = make_shared<Bet>(Bet(*hand.GetBet().get()));
-        splitHand->SetBet(splitBet);
+        auto splitBet = make_shared<Bet>(Bet(hand.GetBet()));
+        splitHand->SetBet(*(splitBet.get()));
         hands_.push_back(splitHand);
         return splitHand;
     }

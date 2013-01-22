@@ -50,11 +50,19 @@ namespace Casino {
     {
     }
 
+    Card::FaceRank::~FaceRank()
+    {
+
+    }
+
     Card::ValueRank::ValueRank(int value):
         value_(value)
     {
     }
 
+    Card::ValueRank::~ValueRank()
+    {
+    }
 
     string Card::FaceRank::ToString() const
     {
@@ -76,6 +84,14 @@ namespace Casino {
         }
         return ss.str();
     }
+
+    string Card::ValueRank::ToString() const
+    {
+        stringstream ss;
+        ss << value_;
+        return ss.str();
+    }
+
 
     int Card::FaceRank::Value() const
     {
