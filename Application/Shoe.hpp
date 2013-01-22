@@ -15,16 +15,16 @@ namespace Casino {
 
     class Shoe {
         public:
-            typedef vector<shared_ptr<Card>>::const_iterator itr_type;
+            typedef vector<Card*>::const_iterator itr_type;
             Shoe (int decks, int stopDeal);
             virtual ~Shoe ();
             void Shuffle();
-            vector<shared_ptr<Card>>::const_iterator begin();
-            vector<shared_ptr<Card>>::const_iterator end();
+            vector<Card*>::const_iterator begin();
+            vector<Card*>::const_iterator end();
         private:
-            vector<shared_ptr<Card>> _decks;
-            vector<shared_ptr<Card>>::const_iterator _deal;
-            vector<shared_ptr<Card>>::const_iterator _stopDeal;
+            vector<Card*> _decks;
+            vector<Card*>::const_iterator _deal;
+            vector<Card*>::const_iterator _stopDeal;
     };
 #if 0
     template <class C> auto begin(Shoe& s) -> decltype(s.begin());

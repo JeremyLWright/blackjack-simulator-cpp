@@ -178,7 +178,6 @@ namespace Casino {
 
     AceCard::~AceCard()
     {
-        delete &_rank;
     }
 
     int AceCard::SoftValue() const

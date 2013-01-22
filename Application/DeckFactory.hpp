@@ -9,11 +9,15 @@
 #ifndef _DECKFACTORY
 #define _DECKFACTORY
 
+#include <vector>
+#include <memory>
+#include "Card.hpp"
+
 namespace Casino {
 
     class DeckFactory {
         public:
-        static std::array<std::shared_ptr<Card>, 52> GetDeck();
+        static vector<Card*> GetDeck();
     };
 
 } /* Casino */

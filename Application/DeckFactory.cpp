@@ -8,17 +8,10 @@
 using namespace std;
 
 namespace Casino {
-    array<shared_ptr<Card>,52> DeckFactory::GetDeck()
+    vector<Card*> DeckFactory::GetDeck()
     {
-        array<shared_ptr<Card>, 52> deck;
+        vector<Card*> deck;
         auto deck_pos = begin(deck);
-#if __clang__
-        vector<Card::Suite> suites;
-            suites.push_back(Card::Suite::SPADES);
-            suites.push_back(Card::Suite::CLUBS);
-            suites.push_back(Card::Suite::DIAMONDS);
-            suites.push_back(Card::Suite::HEARTS);
-#else   
         vector<Card::Suite> suites{Card::Suite::SPADES,
             Card::Suite::CLUBS,
             Card::Suite::DIAMONDS,
@@ -28,25 +21,24 @@ namespace Casino {
             Card::Rank::QUEEN,
             Card::Rank::KING,
             Card::Rank::ACE};
-#endif
 
         for(Card::Suite suite : suites)
         {
             for(int rank = 2; rank <= 10; ++rank)
             {
                 auto temp_rank = new Card::ValueRank(rank);
-                *deck_pos = make_shared<Card>(Card(*temp_rank, suite));
+                *deck_pos = new Card(*temp_rank, suite);
                 ++deck_pos;
             }
 
             //Add the Ace
-            *deck_pos = make_shared<AceCard>(AceCard(suite));
+            *deck_pos = new AceCard(suite);
             ++deck_pos;
 
             for(Card::Rank::RankType face :faces)
             {
                 auto temp_face = new Card::FaceRank(face);
-                *deck_pos = make_shared<FaceCard>(FaceCard(*(temp_face), suite));
+                *deck_pos =  new FaceCard(*(temp_face), suite);
                 ++deck_pos;
             }
         }

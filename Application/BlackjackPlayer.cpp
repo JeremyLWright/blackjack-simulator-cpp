@@ -21,11 +21,11 @@ namespace Casino {
     {
         currentRound_++;
         hands_.clear();
-        auto h = make_shared<Hand>(Hand(*this));
+        auto h = new Hand(*this);
         hands_.push_back(h);
     }
 
-    shared_ptr<Hand> BlackjackPlayer::GetFirstHand() const
+    Hand::Ptr BlackjackPlayer::GetFirstHand() const
     {
         return hands_[0];
     }
@@ -41,7 +41,7 @@ namespace Casino {
         {
             stake_ -= 1000;
             auto bet = new Bet(1000, Odds("Jeremy's Bet", make_pair(3,2)));
-            table_.PlaceBet(bet, hand.get());
+            table_.PlaceBet(bet, hand);
         }
     }
 
@@ -66,11 +66,11 @@ namespace Casino {
         return false;
     }
 
-    shared_ptr<Hand> BlackjackPlayer::Split(Hand& hand) 
+    Hand::Ptr BlackjackPlayer::Split(Hand& hand) 
     {
-        auto splitHand = make_shared<Hand>(Hand(*this));
-        auto splitBet = make_shared<Bet>(Bet(hand.GetBet()));
-        splitHand->SetBet(*(splitBet.get()));
+        auto splitHand = new Hand(*this);
+        auto splitBet = new Bet(hand.GetBet());
+        splitHand->SetBet(*(splitBet));
         hands_.push_back(splitHand);
         return splitHand;
     }
@@ -92,12 +92,12 @@ namespace Casino {
         }
     }
 
-    vector<shared_ptr<Hand>>::iterator BlackjackPlayer::begin()
+    vector<Hand::Ptr>::iterator BlackjackPlayer::begin()
     {
         return std::begin(hands_);
     }
 
-    vector<shared_ptr<Hand>>::iterator BlackjackPlayer::end()
+    vector<Hand::Ptr>::iterator BlackjackPlayer::end()
     {
         return std::end(hands_);
     }

@@ -20,7 +20,7 @@ namespace Casino {
     public:
         BlackjackGame (Shoe& shoe, Table& table);
         virtual ~BlackjackGame ();
-        virtual void AddPlayer(BlackjackPlayer&& player);
+        virtual void AddPlayer(BlackjackPlayer* player);
         virtual void Cycle();
         virtual void Insurance();
         virtual void FillHand(Hand& hand);
@@ -31,7 +31,7 @@ namespace Casino {
         Table& table_;
         BlackjackPlayer dealer_;
         Shoe::itr_type dealItr_;
-        vector<BlackjackPlayer> players_;
+        vector<BlackjackPlayer*> players_;
     };
     
 } /* BlackjackGame */

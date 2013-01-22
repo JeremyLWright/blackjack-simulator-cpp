@@ -32,12 +32,12 @@ namespace Casino {
         shuffle(std::begin(_decks), std::end(_decks), randSource);
     }
 
-    vector<shared_ptr<Card>>::const_iterator Shoe::begin()
+    vector<Card*>::const_iterator Shoe::begin()
     {
         return _deal;
     }
 
-    vector<shared_ptr<Card>>::const_iterator Shoe::end()
+    vector<Card*>::const_iterator Shoe::end()
     {
         return _stopDeal; 
     }

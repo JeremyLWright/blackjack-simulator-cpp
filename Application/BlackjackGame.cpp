@@ -135,9 +135,9 @@ namespace Casino {
         }
     }
 
-    void BlackjackGame::AddPlayer(BlackjackPlayer&& player)
+    void BlackjackGame::AddPlayer(BlackjackPlayer* player)
     {
-        //players_.push_back(player);
+        players_.push_back(player);
     }
 
     string BlackjackGame::ToString()

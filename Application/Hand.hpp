@@ -18,7 +18,7 @@ namespace Casino {
     class BlackjackPlayer;
     class Hand {
         public:
-            typedef shared_ptr<Hand> Ptr;
+            typedef Hand* Ptr;
             explicit Hand (BlackjackPlayer&);
             virtual ~Hand ();
             void Add(Card::Ptr card);
