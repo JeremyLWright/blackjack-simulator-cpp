@@ -16,15 +16,16 @@ namespace Casino {
     class Shoe {
         public:
             typedef vector<Card*>::const_iterator itr_type;
-            Shoe (int decks, int stopDeal);
+            Shoe (int decks);
+			Card::Ptr Draw();
             virtual ~Shoe ();
             void Shuffle();
+
             vector<Card*>::const_iterator begin();
             vector<Card*>::const_iterator end();
         private:
-            vector<Card*> _decks;
-            vector<Card*>::const_iterator _deal;
-            vector<Card*>::const_iterator _stopDeal;
+            vector<Card::Ptr> _decks;
+            vector<Card::Ptr>::const_iterator _deal;
     };
 #if 0
     template <class C> auto begin(Shoe& s) -> decltype(s.begin());

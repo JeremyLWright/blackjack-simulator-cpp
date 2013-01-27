@@ -1,12 +1,14 @@
 #include "BlackjackGame.hpp"
 #include "Card.hpp"
+#include <iostream>
+using namespace std;
 namespace Casino {
     BlackjackGame::BlackjackGame (Shoe& shoe, Table& table):
         shoe_(shoe),
         table_(table),
         dealer_(table)
     {
-        dealItr_ = begin(shoe);
+		dealer_.AddMoney(1000000);
     }
 
     BlackjackGame::~BlackjackGame ()
@@ -19,15 +21,15 @@ namespace Casino {
 
         //Load the hand with 2 cards
         auto hand = player.GetFirstHand();
-        hand->Add(*dealItr_); 
-        ++dealItr_;
-        hand->Add(*dealItr_);
-        ++dealItr_;
+		hand->Add(shoe_.Draw()); 
+        hand->Add(shoe_.Draw());        
+		player.PlaceBets();
     }
 
     void BlackjackGame::Cycle()
     {
         shoe_.Shuffle();
+		cout << "Loading Player's Hands" << endl;
         for(auto player : players_)
         {
             InitPlayer(*player);
@@ -46,10 +48,8 @@ namespace Casino {
                 if(playersHand->Splittable() && !playersHand->SplitDeclined())
                 {
                     auto splitHand = player->Split(*playersHand);
-                    splitHand->Add(*dealItr_);
-                    dealItr_++;      
-                    playersHand->Add(*dealItr_);
-                    dealItr_++;      
+                    splitHand->Add(shoe_.Draw());
+                    playersHand->Add(shoe_.Draw());
                 }
             }
         }
@@ -67,6 +67,7 @@ namespace Casino {
 
         if(dealersHand->Busted())
         {
+			cout << "Dealer Busted - Everyone Wins." << endl;
             //Resolve all bets as winners
             for(auto player : players_)
             {
@@ -81,10 +82,17 @@ namespace Casino {
         {
             for(auto playersHand : *player)
             {
-                if(playersHand->Value() > dealersHand->Value())
+				auto dealerScore = dealersHand->Value();
+				auto playerScore = playersHand->Value();
+				cout << "Dealer Got " << dealerScore << " you got " << playerScore << "." << endl;
+                if(playerScore > dealerScore)
                 {
                     player->Win(playersHand->GetBet());
                 }
+				else
+				{
+					player->Lose(playersHand->GetBet());
+				}
             }
         }
 
@@ -115,14 +123,12 @@ namespace Casino {
         {
             if(hand.GetPlayer().DoubleDown(hand))
             {
-                hand.Add(*dealItr_);
-                dealItr_++;
+                hand.Add(shoe_.Draw());
                 break;
             }
             else if(hand.GetPlayer().Hit(hand))
             {
-                hand.Add(*dealItr_);
-                dealItr_++;
+                hand.Add(shoe_.Draw());
             }
             else
             {

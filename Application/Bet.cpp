@@ -3,17 +3,22 @@
 
 namespace Casino {
     Bet::Bet():
+#if __GNUC__
         amount_{0},
+#else
+		  amount_(0),
+#endif
         outcome_("Default", make_pair(0,1))
     {
     }
+
     Bet::Bet(int Amount, Odds odds):
-#if __clang__
-        amount_(Amount),
-        outcome_(odds)
-#else
-        amount_{Amount},
+#if __GNUC__
+		 amount_{Amount},
         outcome_{odds}
+#else
+		amount_(Amount),
+        outcome_(odds)
 #endif
     {
     }

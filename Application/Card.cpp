@@ -4,8 +4,31 @@
 #include <vector>
 #include <memory> 
 #include <iostream>
+#include <algorithm>
 #include "Card.hpp"
 using namespace std;
+
+namespace {
+	bool IsValidSuite(Casino::Card::Suite::SuiteType const & value)
+	{
+		vector<Casino::Card::Suite::SuiteType> valid_suites;
+            valid_suites.push_back(Casino::Card::Suite::SPADES);
+            valid_suites.push_back(Casino::Card::Suite::CLUBS);
+            valid_suites.push_back(Casino::Card::Suite::DIAMONDS);
+            valid_suites.push_back(Casino::Card::Suite::HEARTS);
+
+			if(none_of(begin(valid_suites), end(valid_suites), [&value](Casino::Card::Suite::SuiteType s){ return value != s;}))
+				return false;
+
+			return true;
+	}
+
+	bool IsValidSuite(Casino::Card::Suite const & suite)
+	{
+		return IsValidSuite(suite._value);
+	}
+}
+
 
 namespace Casino {
 
@@ -13,7 +36,11 @@ namespace Casino {
     Card::Suite::Suite(SuiteType value):
         _value(value)
     {
-    }
+		if(!IsValidSuite(value))
+		{
+			throw logic_error("Invalid Suite when trying to construct Card::Suite::Suite");
+		}
+	}
 
     string Card::Suite::ToString() const
     {
@@ -21,16 +48,16 @@ namespace Casino {
         switch(_value)
         {
             case CLUBS:
-                ss << " of Clubs";
+                ss << "Clubs";
                 break;
             case DIAMONDS:
-                ss << " of Diamonds";
+                ss << "Diamonds";
                 break;
             case HEARTS:
-                ss << " of Hearts";
+                ss << "Hearts";
                 break;
             case SPADES:
-                ss << " of Spades";
+                ss << "Spades";
                 break;
             default:
                 throw logic_error("Invalid Card::Suite");
@@ -118,6 +145,12 @@ namespace Casino {
         _rank(rank),
         _suite(suite)
     {
+		if(!IsValidSuite(suite))
+		{
+			stringstream ss;
+			ss << "Invalid Suite when trying to construct Card::Card(rank=" << rank.ToString() << ",suite=???);";
+			throw logic_error(ss.str());
+		}
     }
 
     Card::~Card()
@@ -166,6 +199,12 @@ namespace Casino {
     FaceCard::FaceCard(Rank const & rank, Suite const & suite):
         Card(rank, suite)
     {
+		if(!IsValidSuite(suite))
+		{
+			stringstream ss;
+			ss << "Invalid Suite when trying to construct Card::FaceCard(rank=" << rank.ToString() << ",suite=???);";
+			throw logic_error(ss.str());
+		}
     }
 
     FaceCard::~FaceCard()
@@ -186,6 +225,12 @@ namespace Casino {
     AceCard::AceCard(Suite const & suite):
         Card(*(new FaceRank(Card::Rank::ACE)), suite)
     {
+		if(!IsValidSuite(suite))
+		{
+			stringstream ss;
+			ss << "Invalid Suite when trying to construct Card::AceCard(rank=ACE,suite=???);";
+			throw logic_error(ss.str());
+		}
     }
 
     AceCard::~AceCard()

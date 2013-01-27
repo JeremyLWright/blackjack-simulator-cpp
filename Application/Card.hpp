@@ -18,8 +18,7 @@ namespace Casino {
     class Card {
         public:
             typedef Card* Ptr;
-            class Suite { 
-                public:
+            struct Suite { 
                     enum SuiteType {
                         CLUBS,
                         DIAMONDS,
@@ -29,8 +28,7 @@ namespace Casino {
 
                     Suite(SuiteType value);
                     string ToString() const;
-                    virtual bool operator==(const Suite& rhs) const;
-                private:
+                    virtual bool operator==(const Suite& rhs) const;                
                     SuiteType _value;
             };
 

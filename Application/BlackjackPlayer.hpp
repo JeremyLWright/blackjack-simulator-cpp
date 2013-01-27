@@ -29,6 +29,7 @@ namespace Casino {
         virtual Hand::Ptr Split(Hand& hand) ;
         virtual bool DoubleDown(Hand& hand) const;
         virtual bool Hit(Hand& hand) const;
+		virtual void AddMoney(int dollars);
 
         vector<Hand::Ptr>::iterator begin();
         vector<Hand::Ptr>::iterator end();

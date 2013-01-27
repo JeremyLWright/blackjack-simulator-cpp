@@ -5,9 +5,15 @@ using namespace std;
 namespace Casino {
     TableLimitException::TableLimitException(int currentBetAmount, int currentCosts, int tableLimit):
         logic_error("Current Bet Exceeds Table Limit"),
-        betAmount_{currentBetAmount},
+#if __GNUC__
+		betAmount_{currentBetAmount},
         tableCost_{currentCosts},
         tableLimit_{tableLimit}
+#else
+#endif
+        betAmount_(currentBetAmount),
+        tableCost_(currentCosts),
+        tableLimit_(tableLimit)
     {
     }
 
@@ -22,7 +28,7 @@ namespace Casino {
     }
 
     Table::Table(int limit):
-        limit_{limit}
+        limit_(limit)
     {
     }
 

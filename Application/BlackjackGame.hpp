@@ -30,7 +30,6 @@ namespace Casino {
         Shoe& shoe_;
         Table& table_;
         BlackjackPlayer dealer_;
-        Shoe::itr_type dealItr_;
         vector<BlackjackPlayer*> players_;
     };
     

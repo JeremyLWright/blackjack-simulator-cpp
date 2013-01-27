@@ -10,7 +10,7 @@
 using namespace std;
 
 namespace Casino {
-    Shoe::Shoe(int decks, int stopDeal )
+    Shoe::Shoe(int decks)
     {
         for(int i = 0; i < decks; ++i)
         {
@@ -18,7 +18,6 @@ namespace Casino {
                 _decks.push_back(card); 
         }
         _deal = std::begin(_decks);
-        _stopDeal = std::end(_decks)-(52*stopDeal); 
     }
 
     Shoe::~Shoe()
@@ -30,16 +29,27 @@ namespace Casino {
         random_device rd;
         minstd_rand0 randSource(rd());
         shuffle(std::begin(_decks), std::end(_decks), randSource);
+		_deal = std::begin(_decks);
     }
+
+	Card::Ptr Shoe::Draw()
+	{
+		auto c = *_deal;
+		if(_deal == std::end(_decks))
+			throw logic_error("End of the deck");
+		++_deal;
+		return c;
+	}
+
 
     vector<Card*>::const_iterator Shoe::begin()
     {
-        return _deal;
+        return std::begin(_decks);
     }
 
     vector<Card*>::const_iterator Shoe::end()
     {
-        return _stopDeal; 
+        return std::end(_decks); 
     }
 
     

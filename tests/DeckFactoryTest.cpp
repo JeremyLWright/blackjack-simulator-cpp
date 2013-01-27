@@ -12,5 +12,6 @@ TEST(DeckFactoryTest, Simple)
     auto deck = Casino::DeckFactory::GetDeck();
     for(auto card : deck)
     {
+		cout << card->ToString() << endl;
     }
 }

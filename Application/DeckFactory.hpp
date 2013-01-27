@@ -17,7 +17,7 @@ namespace Casino {
 
     class DeckFactory {
         public:
-        static vector<Card*> GetDeck();
+        static vector<Card::Ptr> GetDeck();
     };
 
 } /* Casino */

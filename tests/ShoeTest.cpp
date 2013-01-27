@@ -8,12 +8,11 @@ using namespace std;
 
 TEST(ShoeTest, Simple)
 {
-    Casino::Shoe s(4, 1);
-    s.Shuffle();
-#if 0
+    Casino::Shoe s(4);
+    //s.Shuffle();
     for(auto card : s)
     {
         cout << card->ToString() << endl;
     }
-#endif
+
 }

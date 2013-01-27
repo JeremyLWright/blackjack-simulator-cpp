@@ -12,14 +12,16 @@ int main(int argc, const char *argv[])
 {
     Casino::Table* mainTable = new Casino::Table();
     Casino::BlackjackPlayer* Jeremy = new Casino::BlackjackPlayer(*mainTable);
+	Jeremy->AddMoney(1000);
     mainTable->AddPlayer(Jeremy);
-    auto shoe = new Casino::Shoe(4, 3);
+    auto shoe = new Casino::Shoe(4);
     Casino::BlackjackGame game(*shoe, *mainTable);
-    for(int i = 0; i < 10; ++i)
-    {
-        game.Cycle();
-        cout << "Play again" << endl;
-    }
+
+    game.Cycle();
+    cout << "Play again" << endl;
+	string c = "";
+	cin >> c;
+    
     return 0;
 }
 

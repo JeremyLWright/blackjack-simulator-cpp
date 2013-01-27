@@ -1,14 +1,14 @@
 #include "BlackjackPlayer.hpp"
 #include "Table.hpp"
 #include <memory>
-
+#include <iostream>
 using namespace std;
 
 namespace Casino {
     BlackjackPlayer::BlackjackPlayer(Table& table):
-        stake_{0},
-        currentRound_{0},
-        roundsToGo_{0},
+        stake_(0),
+        currentRound_(0),
+        roundsToGo_(0),
         table_(table)
     {
     }
@@ -39,20 +39,26 @@ namespace Casino {
     {
         for(auto hand : hands_)
         {
-            stake_ -= 1000;
-            auto bet = new Bet(1000, Odds("Jeremy's Bet", make_pair(3,2)));
+			if(stake_ <= 0)
+				throw logic_error("Player is out of money.");
+
+            stake_ -= 1;
+			cout << "Betting $1 of " << stake_ << endl;
+            auto bet = new Bet(1, Odds("Jeremy's Bet", make_pair(3,2)));
             table_.PlaceBet(bet, hand);
         }
     }
 
     void BlackjackPlayer::Win(Bet const & bet)
     {
+		cout << "You Won: " << bet.WinAmount() << endl;
         stake_ += bet.WinAmount();
     }
 
     void BlackjackPlayer::Lose(Bet const & bet)
     {
         //We already deducted our money
+		cout << "You Lost: " << bet.LoseAmount() << endl;
         return;
     }
 
@@ -84,13 +90,20 @@ namespace Casino {
     {
         if(hand.Value() >= 17)
         {
+			cout << "Stand." << endl;
             return false;
         }
         else 
         {
+			cout << "Hit Me." << endl;
             return true;
         }
     }
+
+	void BlackjackPlayer::AddMoney(int dollars)
+	{
+		stake_ += dollars;
+	}
 
     vector<Hand::Ptr>::iterator BlackjackPlayer::begin()
     {

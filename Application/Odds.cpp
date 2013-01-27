@@ -2,12 +2,12 @@
 #include <sstream>
 namespace Casino {
     Odds::Odds(string Name, pair<int, int> Odds):
-#if __clang__
-        name_(Name),
-        odds_(Odds)
-#else
+#if __GNUC__
         name_{Name},
         odds_{Odds}
+#else
+        name_(Name),
+        odds_(Odds)
 #endif
     {
         

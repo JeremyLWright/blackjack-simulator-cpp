@@ -23,3 +23,17 @@ TEST(Cards, CardSort)
     delete rank_9;
     delete rank_2;
 }
+
+TEST(Cards, AceCard)
+{
+	Card::Ptr ace = new AceCard(Card::Suite::HEARTS);
+	cout << ace->ToString() << endl;
+}
+
+TEST(Cards, FaceCard)
+{
+	auto face_rank = new Card::FaceRank(Card::FaceRank::KING);
+
+	Card::Ptr face = new FaceCard(*face_rank,Card::Suite::HEARTS);
+	cout << face->ToString() << endl;
+}

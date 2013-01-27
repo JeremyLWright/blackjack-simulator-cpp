@@ -1,12 +1,19 @@
 #include <vector>
+#include <iostream>
 #include <memory>
 #include <algorithm>
 #include "Card.hpp"
 #include "Hand.hpp"
 
+using namespace std;
+
 namespace Casino {
     Hand::Hand(BlackjackPlayer& player):
+#if __GNUC__
         aceCount_{0},
+#else
+		  aceCount_(0),
+#endif
         player_(player)
     {
     }
@@ -17,18 +24,24 @@ namespace Casino {
 
     void Hand::Add(Card::Ptr card)
     {
+		cout << "Received Card: " << card->ToString() << endl;
         cards_.push_back(card);
     }
     
     void Hand::Add(AceCard::Ptr card)
     {
+		cout << "Received Card: " << card->ToString() << endl;
         cards_.push_back(card);
         aceCount_++;
     }
 
     int Hand::Value() const
     {
+#if __GNUC__
         int total{0};
+#else
+		  int total = 0;
+#endif
         for(auto card : cards_)
         {
             total += card->SoftValue();
