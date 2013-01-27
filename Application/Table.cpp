@@ -36,11 +36,6 @@ namespace Casino {
     {
     }
 
-    void Table::AddPlayer(BlackjackPlayer* player)
-    {
-        players_.push_back(player);
-    }
-
     void Table::PlaceBet(Bet* bet, Hand* hand)
     {
         if(IsValid(*bet))

@@ -5,11 +5,10 @@
 using namespace std;
 
 namespace Casino {
-    BlackjackPlayer::BlackjackPlayer(Table& table):
+    BlackjackPlayer::BlackjackPlayer():
         stake_(0),
         currentRound_(0),
-        roundsToGo_(0),
-        table_(table)
+        roundsToGo_(0)
     {
     }
 
@@ -45,7 +44,7 @@ namespace Casino {
             stake_ -= 1;
 			cout << "Betting $1 of " << stake_ << endl;
             auto bet = new Bet(1, Odds("Jeremy's Bet", make_pair(3,2)));
-            table_.PlaceBet(bet, hand);
+            table_->PlaceBet(bet, hand);
         }
     }
 
@@ -115,7 +114,10 @@ namespace Casino {
         return std::end(hands_);
     }
 
-
+	void BlackjackPlayer::SetTable(Table::Ptr table)
+	{
+		table_ = table;
+	}
 
 
 

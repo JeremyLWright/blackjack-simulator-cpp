@@ -18,7 +18,7 @@ using namespace std;
 namespace Casino {
     class BlackjackGame {
     public:
-        BlackjackGame (Shoe& shoe, Table& table);
+        BlackjackGame (Shoe& shoe, Table::Ptr table);
         virtual ~BlackjackGame ();
         virtual void AddPlayer(BlackjackPlayer* player);
         virtual void Cycle();
@@ -28,7 +28,7 @@ namespace Casino {
     private:
         void InitPlayer(BlackjackPlayer& player);
         Shoe& shoe_;
-        Table& table_;
+        Table::Ptr table_;
         BlackjackPlayer dealer_;
         vector<BlackjackPlayer*> players_;
     };

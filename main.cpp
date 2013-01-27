@@ -10,12 +10,11 @@ using namespace std;
 
 int main(int argc, const char *argv[])
 {
-    Casino::Table* mainTable = new Casino::Table();
-    Casino::BlackjackPlayer* Jeremy = new Casino::BlackjackPlayer(*mainTable);
+    Casino::Table::Ptr mainTable = new Casino::Table();
+    Casino::BlackjackPlayer* Jeremy = new Casino::BlackjackPlayer();
 	Jeremy->AddMoney(1000);
-    mainTable->AddPlayer(Jeremy);
     auto shoe = new Casino::Shoe(4);
-    Casino::BlackjackGame game(*shoe, *mainTable);
+    Casino::BlackjackGame game(*shoe, mainTable);
 
     game.Cycle();
     cout << "Play again" << endl;

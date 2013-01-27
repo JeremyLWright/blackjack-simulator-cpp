@@ -3,12 +3,12 @@
 #include <iostream>
 using namespace std;
 namespace Casino {
-    BlackjackGame::BlackjackGame (Shoe& shoe, Table& table):
+    BlackjackGame::BlackjackGame (Shoe& shoe, Table::Ptr table):
         shoe_(shoe),
-        table_(table),
-        dealer_(table)
+        table_(table)
     {
 		dealer_.AddMoney(1000000);
+		dealer_.SetTable(table);
     }
 
     BlackjackGame::~BlackjackGame ()
@@ -77,24 +77,26 @@ namespace Casino {
                 }
             }
         }
-
-        for(auto player: players_)
-        {
-            for(auto playersHand : *player)
-            {
-				auto dealerScore = dealersHand->Value();
-				auto playerScore = playersHand->Value();
-				cout << "Dealer Got " << dealerScore << " you got " << playerScore << "." << endl;
-                if(playerScore > dealerScore)
-                {
-                    player->Win(playersHand->GetBet());
-                }
-				else
+		else
+		{
+			for(auto player: players_)
+			{
+				for(auto playersHand : *player)
 				{
-					player->Lose(playersHand->GetBet());
+					auto dealerScore = dealersHand->Value();
+					auto playerScore = playersHand->Value();
+					cout << "Dealer Got " << dealerScore << " you got " << playerScore << "." << endl;
+					if(playerScore > dealerScore)
+					{
+						player->Win(playersHand->GetBet());
+					}
+					else
+					{
+						player->Lose(playersHand->GetBet());
+					}
 				}
-            }
-        }
+			}
+		}
 
         
         
@@ -144,6 +146,7 @@ namespace Casino {
     void BlackjackGame::AddPlayer(BlackjackPlayer* player)
     {
         players_.push_back(player);
+		player->SetTable(table_);
     }
 
     string BlackjackGame::ToString()

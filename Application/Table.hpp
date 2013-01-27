@@ -8,7 +8,6 @@
 #ifndef _TABLE
 #define _TABLE
 
-#include "BlackjackPlayer.hpp"
 #include "Bet.hpp"
 #include "Hand.hpp"
 #include <string>
@@ -32,15 +31,14 @@ namespace Casino {
 
     class Table {
     public:
+		typedef Table* Ptr;
         Table (int limit=1000);
         virtual ~Table ();
         void PlaceBet(Bet* bet, Hand* hand);
         bool IsValid(Bet& bet) const;
-        void AddPlayer(BlackjackPlayer* player);
         string ToString() const;
     private:
         int limit_;
-        vector<BlackjackPlayer*> players_;
         vector<Bet*> bets_;
         int Cost() const;
     };

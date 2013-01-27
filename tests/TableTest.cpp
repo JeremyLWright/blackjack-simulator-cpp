@@ -6,7 +6,8 @@ using namespace Casino;
 TEST(Tables, PlaceBet)
 {
     Table t;
-    BlackjackPlayer jeremy(t);
+    BlackjackPlayer jeremy;
+	jeremy.SetTable(&t);
     Hand first(jeremy);
     auto bet = Bet(1000, Odds("Jeremy'sBet", make_pair(3,2)));
     EXPECT_THROW( t.PlaceBet(&bet, &first), TableLimitException);
@@ -16,7 +17,8 @@ TEST(Tables, PlaceBet)
 TEST(Tables, PlaceBetClean)
 {
     Table t(10000);
-    BlackjackPlayer jeremy(t);
+    BlackjackPlayer jeremy;
+	jeremy.SetTable(&t);
     Hand first(jeremy);
     auto bet = Bet(1000, Odds("Jeremy'sBet", make_pair(3,2)));
     EXPECT_NO_THROW( t.PlaceBet(&bet, &first));
