@@ -4,8 +4,8 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
 SET(CMAKE_CXX_FLAGS "-std=gnu++11 -g3 -ggdb") #Turn on C++11 and advanced debugging support
 ENDIF()
 
-if( MSVC ) # VS2012 doesn't support correctly the tuples yet
-     	    add_definitions( /D _VARIADIC_MAX=10 )
+if( MSVC ) 
+     	    add_definitions( /D _VARIADIC_MAX=10 ) # VS2012 doesn't support correctly the tuples yet
 			 MESSAGE ( STATUS "Setting MSVC MT switches")
    foreach (flag_var
              CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
@@ -57,9 +57,9 @@ add_library(application_code ${APPLICATION_CODE_FILES})
 
 add_executable(unit-test ${UNIT_TESTS} )
 if( MSVC )
-target_link_libraries(unit-test gtest gtest_main application_code)
+target_link_libraries(unit-test gtest gtest_main gmock application_code)
 else()
-target_link_libraries(unit-test gtest gtest_main rt pthread application_code)
+target_link_libraries(unit-test gtest gtest_main gmock rt pthread application_code)
 endif()
 
 

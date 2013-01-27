@@ -3,16 +3,16 @@
 #include <memory>
 #include <iostream>
 #include "Shoe.hpp"
-
 using namespace std;
 
 TEST(ShoeTest, Simple)
 {
     Casino::Shoe s(4);
-    //s.Shuffle();
+    s.Shuffle();
+	
     for(auto card : s)
     {
-        cout << card->ToString() << endl;
+        EXPECT_NO_THROW(card->ToString());
     }
 
 }

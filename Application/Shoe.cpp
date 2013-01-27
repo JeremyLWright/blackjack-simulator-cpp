@@ -41,7 +41,7 @@ namespace Casino {
 		return c;
 	}
 
-
+#if 1
     vector<Card*>::const_iterator Shoe::begin()
     {
         return std::begin(_decks);
@@ -51,6 +51,6 @@ namespace Casino {
     {
         return std::end(_decks); 
     }
-
+#endif
     
 } /* Casino */
