@@ -14,7 +14,9 @@ namespace Casino {
 #else
 		  aceCount_(0),
 #endif
-        player_(player)
+        player_(player),
+		splitDeclined_(true)
+
     {
     }
 
