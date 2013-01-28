@@ -83,16 +83,19 @@ namespace Casino {
 			{
 				for(auto playersHand : *player)
 				{
-					auto dealerScore = dealersHand->Value();
-					auto playerScore = playersHand->Value();
-					cout << "Dealer Got " << dealerScore << " you got " << playerScore << "." << endl;
-					if(playerScore > dealerScore)
+					if(!playersHand->Busted()) //If busted we already lost
 					{
-						player->Win(playersHand->GetBet());
-					}
-					else
-					{
-						player->Lose(playersHand->GetBet());
+						auto dealerScore = dealersHand->Value();
+						auto playerScore = playersHand->Value();
+						cout << "Dealer Got " << dealerScore << " you got " << playerScore << "." << endl;
+						if(playerScore > dealerScore)
+						{
+							player->Win(playersHand->GetBet());
+						}
+						else
+						{
+							player->Lose(playersHand->GetBet());
+						}
 					}
 				}
 			}
