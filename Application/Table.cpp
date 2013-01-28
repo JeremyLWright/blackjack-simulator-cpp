@@ -10,10 +10,10 @@ namespace Casino {
         tableCost_{currentCosts},
         tableLimit_{tableLimit}
 #else
-#endif
         betAmount_(currentBetAmount),
         tableCost_(currentCosts),
         tableLimit_(tableLimit)
+#endif
     {
     }
 
