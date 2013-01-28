@@ -58,8 +58,7 @@ TEST(BlackjameGame, DealerBusts)
 	auto card2 = new Card(*rank2, *club);
 
 
-	// This game I expect the following things to happen
-
+	// This game I expect the following things to happen...
 	EXPECT_CALL(shoe, Shuffle());
 
 	EXPECT_CALL(shoe, Draw())
@@ -71,6 +70,120 @@ TEST(BlackjameGame, DealerBusts)
 	
 	// Since the dealer busted, Jeremy should win...
 	EXPECT_CALL(*FakeJeremy, Win(_)); //The _ means I don't care what the input is.
+	
+	//Do it...
+    Casino::BlackjackGame game(shoe, mainTable);
+	game.AddPlayer(FakeJeremy);
+
+    game.Cycle();
+    
+	
+	delete heart;
+	delete club;
+
+	delete rank10;
+	delete card10;
+	
+	delete rank2;
+	delete card2;
+	
+	delete rank7;
+	delete card7;
+
+	delete mainTable;
+	delete FakeJeremy;
+	
+}
+
+TEST(BlackjameGame, DealerDoesNotBustButPlayerWins)
+{
+	Casino::Table::Ptr mainTable = new Casino::Table();
+    MockPlayer* FakeJeremy = new MockPlayer();
+	FakeJeremy->AddMoney(1000);
+    MockShoe shoe;
+
+	auto heart = new Card::Suite(Card::Suite::HEARTS);
+	auto club = new Card::Suite(Card::Suite::CLUBS);
+
+	auto rank10 = new Card::ValueRank(10);
+	auto card10 = new Card(*rank10, *heart);
+
+	auto rank7 = new Card::ValueRank(7);
+	auto card7 = new Card(*rank7, *club);
+
+	auto rank2 = new Card::ValueRank(2);
+	auto card2 = new Card(*rank2, *club);
+
+
+	// This game I expect the following things to happen...
+	EXPECT_CALL(shoe, Shuffle());
+
+	EXPECT_CALL(shoe, Draw())
+		.WillOnce(Return(card7))	//Player.Value() == 7
+		.WillOnce(Return(card7))	//Player.Value() == 14
+		.WillOnce(Return(card7))	//Dealer.Value() == 7
+		.WillOnce(Return(card10))	//Dealer.Value() == 17 -> Stand
+		.WillOnce(Return(card7));	//Player.Value() == 21 -> Stand
+	
+	//Jeremy should win...
+	EXPECT_CALL(*FakeJeremy, Win(_)); //The _ means I don't care what the input is.
+	
+	//Do it...
+    Casino::BlackjackGame game(shoe, mainTable);
+	game.AddPlayer(FakeJeremy);
+
+    game.Cycle();
+    
+	
+	delete heart;
+	delete club;
+
+	delete rank10;
+	delete card10;
+	
+	delete rank2;
+	delete card2;
+	
+	delete rank7;
+	delete card7;
+
+	delete mainTable;
+	delete FakeJeremy;
+	
+}
+
+TEST(BlackjameGame, PlayerLoses)
+{
+	Casino::Table::Ptr mainTable = new Casino::Table();
+    MockPlayer* FakeJeremy = new MockPlayer();
+	FakeJeremy->AddMoney(1000);
+    MockShoe shoe;
+
+	auto heart = new Card::Suite(Card::Suite::HEARTS);
+	auto club = new Card::Suite(Card::Suite::CLUBS);
+
+	auto rank10 = new Card::ValueRank(10);
+	auto card10 = new Card(*rank10, *heart);
+
+	auto rank7 = new Card::ValueRank(7);
+	auto card7 = new Card(*rank7, *club);
+
+	auto rank2 = new Card::ValueRank(2);
+	auto card2 = new Card(*rank2, *club);
+
+
+	// This game I expect the following things to happen...
+	EXPECT_CALL(shoe, Shuffle());
+
+	EXPECT_CALL(shoe, Draw())
+		.WillOnce(Return(card7))	//Player.Value() == 7
+		.WillOnce(Return(card7))	//Player.Value() == 14
+		.WillOnce(Return(card7))	//Dealer.Value() == 7
+		.WillOnce(Return(card10))	//Dealer.Value() == 17 -> Stand
+		.WillOnce(Return(card10));	//Player.Value() == 24 -> Bust
+	
+	//Jeremy should lose...
+	EXPECT_CALL(*FakeJeremy, Lose(_)); //The _ means I don't care what the input is.
 	
 	//Do it...
     Casino::BlackjackGame game(shoe, mainTable);
