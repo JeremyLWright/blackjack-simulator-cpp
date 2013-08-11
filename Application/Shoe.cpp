@@ -36,7 +36,7 @@ namespace Casino {
 	{
 		auto c = *_deal;
 		if(_deal == std::end(_decks))
-			throw logic_error("End of the deck");
+			throw EndOfShoeException();
 		++_deal;
 		return c;
 	}

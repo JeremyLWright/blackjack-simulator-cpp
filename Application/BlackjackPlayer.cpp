@@ -37,6 +37,11 @@ namespace Casino {
     {
         return hands_[0];
     }
+    void BlackjackPlayer::DealerUpCard(Card::Ptr card)
+    {
+        if(view_ != nullptr)
+           view_->DealerUpCard(card);
+    }
 
     bool BlackjackPlayer::IsPlaying() const
     {
@@ -48,8 +53,11 @@ namespace Casino {
         for(auto hand : hands_)
         {
 			if(stake_ <= 0)
-				throw logic_error("Player is out of money.");
-            auto betAmount = view_->GetBet(stake_);
+				throw OutOfMoneyException(this);
+            auto betAmount = 1;
+            if(view_ != nullptr)
+                auto betAmount = view_->GetBet(stake_);
+
             stake_ -= betAmount;
             auto bet = new Bet(betAmount, Odds("Jeremy's Bet", make_pair(3,2)));
             table_->PlaceBet(bet, hand);
@@ -103,7 +111,7 @@ namespace Casino {
         return view_;
     }
 
-	void BlackjackPlayer::AddMoney(int dollars)
+	void BlackjackPlayer::AddMoney(double dollars)
 	{
 		stake_ += dollars;
 	}

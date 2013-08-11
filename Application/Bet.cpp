@@ -12,7 +12,7 @@ namespace Casino {
     {
     }
 
-    Bet::Bet(int Amount, Odds odds):
+    Bet::Bet(double Amount, Odds odds):
 #if __GNUC__
 		 amount_{Amount},
         outcome_{odds}
@@ -27,12 +27,12 @@ namespace Casino {
     {
     }
 
-    int Bet::WinAmount() const
+    double Bet::WinAmount() const
     {
         return amount_*outcome_;
     }
 
-    int Bet::LoseAmount() const
+    double Bet::LoseAmount() const
     {
         return amount_;
     }

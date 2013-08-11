@@ -16,10 +16,10 @@ using namespace std;
 namespace Casino {
     class Odds {
     public:
-        Odds (string Name, pair<int, int> Odds);
+        Odds (string Name, pair<double, double> Odds);
         virtual ~Odds();
-        friend int operator*(Odds const & lhs, int Amount);
-        friend int operator*(int Amount, Odds const & rhs);
+        friend double operator*(Odds const & lhs, double Amount);
+        friend double operator*(double Amount, Odds const & rhs);
         
         bool operator==(Odds const & rhs) const;
         bool operator!=(Odds const & rhs) const;
@@ -28,7 +28,7 @@ namespace Casino {
 
     private:
         string name_;
-        pair<int, int> odds_;
+        pair<double, double> odds_;
 
     };
 

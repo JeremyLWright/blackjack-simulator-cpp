@@ -35,6 +35,7 @@ namespace Casino {
         Table (int limit=1000);
         virtual ~Table ();
         void PlaceBet(Bet* bet, Hand* hand);
+        void NewGame();
         bool IsValid(Bet& bet) const;
         string ToString() const;
     private:

@@ -9,6 +9,7 @@ namespace Casino {
     {
 		dealer_.AddMoney(1000000);
 		dealer_.SetTable(table);
+        shoe_.Shuffle();
     }
 
     BlackjackGame::~BlackjackGame ()
@@ -28,7 +29,7 @@ namespace Casino {
 
     void BlackjackGame::Cycle()
     {
-        shoe_.Shuffle();
+        table_->NewGame();
         for(auto player : players_)
         {
             InitPlayer(*player);
@@ -42,6 +43,7 @@ namespace Casino {
         //Initial deal, and splitting...
         for(auto player : players_)
         {
+            player->DealerUpCard(dealersHand->GetUpCard());
             for(auto playersHand : *player)
             {
                 if(playersHand->Splittable() && !playersHand->SplitDeclined())

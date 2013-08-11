@@ -17,14 +17,14 @@ namespace Casino {
     class Bet {
     public:
         Bet();
-        Bet (int Amount, Odds odds);
+        Bet (double Amount, Odds odds);
         virtual ~Bet ();
-        virtual int WinAmount() const;
-        virtual int LoseAmount() const;
+        virtual double WinAmount() const;
+        virtual double LoseAmount() const;
         virtual string ToString() const;
 
     private:
-        int amount_;
+        double amount_;
         Odds outcome_;
     };
     

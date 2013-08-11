@@ -1,7 +1,7 @@
 #include "Odds.hpp"
 #include <sstream>
 namespace Casino {
-    Odds::Odds(string Name, pair<int, int> Odds):
+    Odds::Odds(string Name, pair<double, double> Odds):
 #if __GNUC__
         name_{Name},
         odds_{Odds}
@@ -34,12 +34,12 @@ namespace Casino {
         return ss.str();
     }
     
-    int operator*(int Amount, Odds const & rhs) 
+    double operator*(double Amount, Odds const & rhs) 
     {
         return (Amount * rhs.odds_.first)/rhs.odds_.second;
     }
     
-    int operator*(Odds const & lhs, int Amount)
+    double operator*(Odds const & lhs, double Amount)
     {
         return operator*(Amount, lhs);
     }

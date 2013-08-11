@@ -8,10 +8,19 @@
 
 #ifndef _SHOE
 #define _SHOE
-
+#include <stdexcept>
+#include <string>
 using namespace std;
 
+
 namespace Casino {
+    struct EndOfShoeException : public std::logic_error
+    {
+        EndOfShoeException():
+            logic_error("Deck needs to be shuffled.")
+        {
+        }
+    };
 
     class Shoe {
         public:

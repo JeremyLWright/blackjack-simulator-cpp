@@ -12,6 +12,7 @@
 #include "Bet.hpp"
 #include "Hand.hpp"
 #include "PlayerView.hpp"
+#include <stdexcept>
 
 
 namespace Casino {
@@ -32,19 +33,30 @@ namespace Casino {
         virtual Hand::Ptr Split(Hand& hand) ;
         virtual bool DoubleDown(Hand& hand) const;
         virtual bool Hit(Hand& hand) const;
-		virtual void AddMoney(int dollars);
+		virtual void AddMoney(double dollars);
         virtual PlayerView* GetView();
+        virtual void DealerUpCard(Card::Ptr card);
 
         virtual vector<Hand::Ptr>::iterator begin();
         virtual vector<Hand::Ptr>::iterator end();
 		virtual void SetTable(Table::Ptr table);
-    private:
-        int stake_;
+    protected:
+        double stake_;
         int currentRound_;
         int roundsToGo_;
         Table::Ptr table_;
         vector<Hand::Ptr> hands_;
         PlayerView* view_;
+    };
+    
+    struct OutOfMoneyException : public std::logic_error
+    {
+        OutOfMoneyException(BlackjackPlayer* player):
+            logic_error("Player is out of money"),
+            player_(player)
+        {
+        }
+        BlackjackPlayer* player_;
     };
     
 } /* Casino */

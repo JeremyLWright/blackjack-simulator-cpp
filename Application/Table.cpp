@@ -36,6 +36,11 @@ namespace Casino {
     {
     }
 
+    void Table::NewGame()
+    {
+        bets_.clear();
+    }
+
     void Table::PlaceBet(Bet* bet, Hand* hand)
     {
         if(IsValid(*bet))
