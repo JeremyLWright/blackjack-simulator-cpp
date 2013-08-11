@@ -10,6 +10,15 @@ namespace Casino {
         currentRound_(0),
         roundsToGo_(0)
     {
+        view_ = new PlayerView();
+    }
+
+    BlackjackPlayer::BlackjackPlayer(PlayerView* view):
+        stake_(0),
+        currentRound_(0),
+        roundsToGo_(0),
+        view_(view)
+    {
     }
 
     BlackjackPlayer::~BlackjackPlayer()
@@ -40,24 +49,23 @@ namespace Casino {
         {
 			if(stake_ <= 0)
 				throw logic_error("Player is out of money.");
-
-            stake_ -= 1;
-			cout << "Betting $1 of " << stake_ << endl;
-            auto bet = new Bet(1, Odds("Jeremy's Bet", make_pair(3,2)));
+            auto betAmount = view_->GetBet(stake_);
+            stake_ -= betAmount;
+            auto bet = new Bet(betAmount, Odds("Jeremy's Bet", make_pair(3,2)));
             table_->PlaceBet(bet, hand);
         }
     }
 
     void BlackjackPlayer::Win(Bet const & bet)
     {
-		cout << "You Won: " << bet.WinAmount() << endl;
+        view_->Win(bet.WinAmount());
         stake_ += bet.WinAmount();
     }
 
     void BlackjackPlayer::Lose(Bet const & bet)
     {
         //We already deducted our money
-		cout << "You Lost: " << bet.LoseAmount() << endl;
+        view_->Lose();
         return;
     }
 
@@ -87,16 +95,12 @@ namespace Casino {
 
     bool BlackjackPlayer::Hit(Hand& hand) const
     {
-        if(hand.Value() >= 17)
-        {
-			cout << "Stand." << endl;
-            return false;
-        }
-        else 
-        {
-			cout << "Hit Me." << endl;
-            return true;
-        }
+        return view_->Hit(hand);
+    }
+
+    PlayerView* BlackjackPlayer::GetView()
+    {
+        return view_;
     }
 
 	void BlackjackPlayer::AddMoney(int dollars)

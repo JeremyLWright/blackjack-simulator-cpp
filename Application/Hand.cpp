@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "Card.hpp"
 #include "Hand.hpp"
+#include "BlackjackPlayer.hpp"
 
 using namespace std;
 
@@ -26,13 +27,16 @@ namespace Casino {
 
     void Hand::Add(Card::Ptr card)
     {
-		cout << "Received Card: " << card->ToString() << endl;
+        if(player_ != nullptr)
+            player_->GetView()->ReceivedCardEvent(card);
+
         cards_.push_back(card);
     }
     
     void Hand::Add(AceCard::Ptr card)
     {
-		cout << "Received Ace: " << card->ToString() << endl;
+        if(player_ != nullptr)
+            player_->GetView()->ReceivedCardEvent(card);
         cards_.push_back(card);
         aceCount_++;
     }

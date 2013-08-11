@@ -29,7 +29,6 @@ namespace Casino {
     void BlackjackGame::Cycle()
     {
         shoe_.Shuffle();
-		cout << "Loading Player's Hands" << endl;
         for(auto player : players_)
         {
             InitPlayer(*player);
@@ -67,10 +66,10 @@ namespace Casino {
 
         if(dealersHand->Busted())
         {
-			cout << "Dealer Busted - Everyone Wins." << endl;
             //Resolve all bets as winners
             for(auto player : players_)
             {
+                player->GetView()->DealerBusted();
                 for(auto playersHand : *player)
                 {
                     player->Win(playersHand->GetBet());
@@ -87,7 +86,7 @@ namespace Casino {
 					{
 						auto dealerScore = dealersHand->Value();
 						auto playerScore = playersHand->Value();
-						cout << "Dealer Got " << dealerScore << " you got " << playerScore << "." << endl;
+                        player->GetView()->FinalScore(dealerScore, playerScore);
 						if(playerScore > dealerScore)
 						{
 							player->Win(playersHand->GetBet());

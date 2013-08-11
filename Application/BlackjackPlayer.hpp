@@ -11,12 +11,14 @@
 #include "Table.hpp"
 #include "Bet.hpp"
 #include "Hand.hpp"
+#include "PlayerView.hpp"
 
 
 namespace Casino {
     class BlackjackPlayer {
     public:
         explicit BlackjackPlayer ();
+        BlackjackPlayer(PlayerView* view);
         virtual ~BlackjackPlayer ();
         virtual void NewGame();
         virtual Hand::Ptr GetFirstHand() const;
@@ -31,6 +33,7 @@ namespace Casino {
         virtual bool DoubleDown(Hand& hand) const;
         virtual bool Hit(Hand& hand) const;
 		virtual void AddMoney(int dollars);
+        virtual PlayerView* GetView();
 
         virtual vector<Hand::Ptr>::iterator begin();
         virtual vector<Hand::Ptr>::iterator end();
@@ -41,6 +44,7 @@ namespace Casino {
         int roundsToGo_;
         Table::Ptr table_;
         vector<Hand::Ptr> hands_;
+        PlayerView* view_;
     };
     
 } /* Casino */

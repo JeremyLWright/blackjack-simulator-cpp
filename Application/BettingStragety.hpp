@@ -62,7 +62,7 @@ Key:
 
     virtual bool EvenMoney(Hand& hand, Card::Ptr dealer) const
     {
-        return true;
+        return false;
     }
     virtual bool Insurance(Hand& hand, Card::Ptr dealer) const
     {

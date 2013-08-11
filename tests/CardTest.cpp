@@ -22,11 +22,9 @@ TEST(Cards, CardSort)
 TEST(Cards, AceCard)
 {
 	Card::Ptr ace = new AceCard(Card::Suite::HEARTS);
-	cout << ace->ToString() << endl;
 }
 
 TEST(Cards, FaceCard)
 {
 	Card::Ptr face = new FaceCard(FaceRank::KING,Card::Suite::HEARTS);
-	cout << face->ToString() << endl;
 }
