@@ -87,7 +87,7 @@ namespace Casino {
 
     bool Hand::Splittable()
     {
-        if(cards_.size() == 2 && cards_[0]->rank() == cards_[1]->rank())
+        if(cards_.size() == 2 && cards_[0]->Rank() == cards_[1]->Rank())
         {
             return true;
         }

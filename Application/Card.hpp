@@ -42,7 +42,10 @@ namespace Casino {
             virtual bool operator==(const Card& rhs) const;
             virtual bool operator<(const Card& rhs) const;
         protected:
-            Card();
+            Card():
+        _rank(0),
+        _suite(Suite(Suite::CLUBS))
+        {}
 
         private:
             int const _rank;

@@ -17,10 +17,11 @@ namespace Casino {
             Card::Suite::DIAMONDS,
             Card::Suite::HEARTS};
         
-        vector<Card::Rank::RankType> faces{Card::Rank::JACK,
-            Card::Rank::QUEEN,
-            Card::Rank::KING,
-            Card::Rank::ACE};
+        vector<FaceRank> faces{
+            FaceRank::JACK,
+            FaceRank::QUEEN,
+            FaceRank::KING,
+            FaceRank::ACE};
 #else
 		
         vector<Card::Suite::SuiteType> suites;
@@ -45,14 +46,12 @@ namespace Casino {
 
             for(int rank = 2; rank <= 10; ++rank)
             {
-                auto temp_rank = new Card::ValueRank(rank);
-                deck.push_back(new Card(*temp_rank, *temp_suite));
+                deck.push_back(new Card(rank, *temp_suite));
             }
 
-            for(Card::Rank::RankType face :faces)
+            for(FaceRank face :faces)
             {
-                auto temp_face = new Card::FaceRank(face);
-                deck.push_back(new FaceCard(*(temp_face), *temp_suite));
+                deck.push_back(new FaceCard(face, *temp_suite));
             }
         }
 
