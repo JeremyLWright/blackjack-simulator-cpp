@@ -14,7 +14,7 @@ TEST(Simulation, PerfectGame)
     PerfectView* view = new PerfectView();
     BlackjackPlayer* Jeremy = new BlackjackPlayer(view);
     Jeremy->AddMoney(1000);
-    Shoe shoe(4);
+    Shoe shoe(8);
 
     Casino::BlackjackGame game(shoe, mainTable);
     game.AddPlayer(Jeremy);
@@ -29,7 +29,7 @@ TEST(Simulation, PerfectGame)
         }
         catch(OutOfMoneyException const & e)
         {
-            cout << "Player: "<< Jeremy << " is out of Money:" << e.player_ << endl;
+            cout << "Player: "<< Jeremy << " is out of Money in " << i << " games." << endl;
             break;
         }
 
