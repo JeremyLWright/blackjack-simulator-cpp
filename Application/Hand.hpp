@@ -19,7 +19,11 @@ namespace Casino {
     class Hand {
         public:
             typedef Hand* Ptr;
-            explicit Hand (BlackjackPlayer&);
+            Hand (BlackjackPlayer*);
+            Hand():
+                player_(nullptr)
+            {
+            }
             virtual ~Hand ();
             void Add(Card::Ptr card);
             void Add(AceCard::Ptr card);
@@ -28,7 +32,7 @@ namespace Casino {
             bool Blackjack() const;
             bool Busted() const;
             void SetBet(Bet& ante);
-            BlackjackPlayer& GetPlayer() const;
+            BlackjackPlayer* GetPlayer() const;
             bool Splittable();
             bool SplitDeclined() const;
             Bet& GetBet() const;
@@ -41,7 +45,7 @@ namespace Casino {
             bool splitDeclined_;
             vector<Card::Ptr> cards_;
             Bet* ante_;
-            BlackjackPlayer& player_;
+            BlackjackPlayer* player_;
     };
 
 } /* Casino */

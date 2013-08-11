@@ -8,7 +8,7 @@
 using namespace std;
 
 namespace Casino {
-    Hand::Hand(BlackjackPlayer& player):
+    Hand::Hand(BlackjackPlayer* player):
 #if __GNUC__
         aceCount_{0},
 #else
@@ -32,7 +32,7 @@ namespace Casino {
     
     void Hand::Add(AceCard::Ptr card)
     {
-		cout << "Received Card: " << card->ToString() << endl;
+		cout << "Received Ace: " << card->ToString() << endl;
         cards_.push_back(card);
         aceCount_++;
     }
@@ -113,7 +113,7 @@ namespace Casino {
         return *ante_;
     }
     
-    BlackjackPlayer& Hand::GetPlayer() const
+    BlackjackPlayer* Hand::GetPlayer() const
     {
         return player_;
     }

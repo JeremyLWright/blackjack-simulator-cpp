@@ -20,7 +20,7 @@ namespace Casino {
     {
         currentRound_++;
         hands_.clear();
-        auto h = new Hand(*this);
+        auto h = new Hand(this);
         hands_.push_back(h);
     }
 
@@ -73,7 +73,7 @@ namespace Casino {
 
     Hand::Ptr BlackjackPlayer::Split(Hand& hand) 
     {
-        auto splitHand = new Hand(*this);
+        auto splitHand = new Hand(this);
         auto splitBet = new Bet(hand.GetBet());
         splitHand->SetBet(*(splitBet));
         hands_.push_back(splitHand);

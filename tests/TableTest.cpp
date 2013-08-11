@@ -8,7 +8,7 @@ TEST(Tables, PlaceBet)
     Table t;
     BlackjackPlayer jeremy;
 	jeremy.SetTable(&t);
-    Hand first(jeremy);
+    Hand first(&jeremy);
     auto bet = Bet(1000, Odds("Jeremy'sBet", make_pair(3,2)));
     EXPECT_THROW( t.PlaceBet(&bet, &first), TableLimitException);
 }
@@ -19,7 +19,7 @@ TEST(Tables, PlaceBetClean)
     Table t(10000);
     BlackjackPlayer jeremy;
 	jeremy.SetTable(&t);
-    Hand first(jeremy);
+    Hand first(&jeremy);
     auto bet = Bet(1000, Odds("Jeremy'sBet", make_pair(3,2)));
     EXPECT_NO_THROW( t.PlaceBet(&bet, &first));
 }

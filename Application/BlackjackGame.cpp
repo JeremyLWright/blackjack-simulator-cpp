@@ -126,12 +126,12 @@ namespace Casino {
     {
         while(!hand.Busted())
         {
-            if(hand.GetPlayer().DoubleDown(hand))
+            if(hand.GetPlayer()->DoubleDown(hand))
             {
                 hand.Add(shoe_.Draw());
                 break;
             }
-            else if(hand.GetPlayer().Hit(hand))
+            else if(hand.GetPlayer()->Hit(hand))
             {
                 hand.Add(shoe_.Draw());
             }
@@ -142,7 +142,7 @@ namespace Casino {
         }
         if(hand.Busted())
         {
-            hand.GetPlayer().Lose(hand.GetBet());
+            hand.GetPlayer()->Lose(hand.GetBet());
         }
     }
 
