@@ -69,6 +69,11 @@ namespace Casino {
 
 
     /** Card Methods **/
+    Card::Card():
+        _rank(0),
+        _suite(Suite(Suite::CLUBS))
+    {
+    }
     Card::Card(int rank, Suite const & suite):
         _rank(rank),
         _suite(suite)
@@ -136,6 +141,26 @@ namespace Casino {
     {
         return 10;
     }
+    string FaceCard::ToString() const
+    {
+        stringstream ss;
+        switch(_rank)
+        {
+            case FaceRank::JACK:
+                ss << "Jack";
+                break;
+            case FaceRank::QUEEN:
+                ss << "Queen";
+                break;
+            case FaceRank::KING:
+                ss << "King";
+                break;
+            default:
+                throw logic_error("Invalid Suite.");
+        }
+        ss << " of " << _suite.ToString();
+        return ss.str();
+    }
 
     AceCard::AceCard(Suite const & suite):
         _suite(suite)
@@ -159,6 +184,12 @@ namespace Casino {
     bool AceCard::OfferInsurance() const
     {
         return true;
+    }
+    string AceCard::ToString() const
+    {
+        stringstream ss;
+        ss << "Ace of " << _suite.ToString();
+        return ss.str();
     }
 
 }

@@ -42,10 +42,7 @@ namespace Casino {
             virtual bool operator==(const Card& rhs) const;
             virtual bool operator<(const Card& rhs) const;
         protected:
-            Card():
-        _rank(0),
-        _suite(Suite(Suite::CLUBS))
-        {}
+            Card();
 
         private:
             int const _rank;
@@ -55,8 +52,7 @@ namespace Casino {
     enum class FaceRank {
         JACK,
         QUEEN,
-        KING,
-        ACE
+        KING
     };
 
     class FaceCard : public Card {
@@ -66,6 +62,7 @@ namespace Casino {
             virtual ~FaceCard();
             virtual int SoftValue() const;
             virtual int HardValue() const;
+            virtual std::string ToString() const;
         private:
             FaceRank const _rank;
             Suite const & _suite;
@@ -79,6 +76,7 @@ namespace Casino {
             virtual int SoftValue() const;
             virtual int HardValue() const;
             virtual bool OfferInsurance() const;
+            virtual std::string ToString() const;
         private:
             Suite const & _suite;
     };

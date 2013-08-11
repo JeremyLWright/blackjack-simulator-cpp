@@ -48,14 +48,11 @@ TEST(BlackjameGame, DealerBusts)
 	auto heart = new Card::Suite(Card::Suite::HEARTS);
 	auto club = new Card::Suite(Card::Suite::CLUBS);
 
-	auto rank10 = new Card::ValueRank(10);
-	auto card10 = new Card(*rank10, *heart);
+	auto card10 = new Card(10, *heart);
 
-	auto rank7 = new Card::ValueRank(7);
-	auto card7 = new Card(*rank7, *club);
+	auto card7 = new Card(7, *club);
 
-	auto rank2 = new Card::ValueRank(2);
-	auto card2 = new Card(*rank2, *club);
+	auto card2 = new Card(2, *club);
 
 
 	// This game I expect the following things to happen...
@@ -81,13 +78,10 @@ TEST(BlackjameGame, DealerBusts)
 	delete heart;
 	delete club;
 
-	delete rank10;
 	delete card10;
 	
-	delete rank2;
 	delete card2;
 	
-	delete rank7;
 	delete card7;
 
 	delete mainTable;
@@ -105,14 +99,10 @@ TEST(BlackjameGame, DealerDoesNotBustButPlayerWins)
 	auto heart = new Card::Suite(Card::Suite::HEARTS);
 	auto club = new Card::Suite(Card::Suite::CLUBS);
 
-	auto rank10 = new Card::ValueRank(10);
-	auto card10 = new Card(*rank10, *heart);
+	auto card10 = new Card(10, *heart);
 
-	auto rank7 = new Card::ValueRank(7);
-	auto card7 = new Card(*rank7, *club);
-
-	auto rank2 = new Card::ValueRank(2);
-	auto card2 = new Card(*rank2, *club);
+	auto card7 = new Card(7, *club);
+	auto card2 = new Card(2, *club);
 
 
 	// This game I expect the following things to happen...
@@ -138,13 +128,10 @@ TEST(BlackjameGame, DealerDoesNotBustButPlayerWins)
 	delete heart;
 	delete club;
 
-	delete rank10;
 	delete card10;
 	
-	delete rank2;
 	delete card2;
 	
-	delete rank7;
 	delete card7;
 
 	delete mainTable;
@@ -162,14 +149,11 @@ TEST(BlackjameGame, PlayerLoses)
 	auto heart = new Card::Suite(Card::Suite::HEARTS);
 	auto club = new Card::Suite(Card::Suite::CLUBS);
 
-	auto rank10 = new Card::ValueRank(10);
-	auto card10 = new Card(*rank10, *heart);
+	auto card10 = new Card(10, *heart);
 
-	auto rank7 = new Card::ValueRank(7);
-	auto card7 = new Card(*rank7, *club);
+	auto card7 = new Card(7, *club);
 
-	auto rank2 = new Card::ValueRank(2);
-	auto card2 = new Card(*rank2, *club);
+	auto card2 = new Card(2, *club);
 
 
 	// This game I expect the following things to happen...
@@ -195,13 +179,10 @@ TEST(BlackjameGame, PlayerLoses)
 	delete heart;
 	delete club;
 
-	delete rank10;
 	delete card10;
 	
-	delete rank2;
 	delete card2;
 	
-	delete rank7;
 	delete card7;
 
 	delete mainTable;

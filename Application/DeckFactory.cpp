@@ -20,8 +20,7 @@ namespace Casino {
         vector<FaceRank> faces{
             FaceRank::JACK,
             FaceRank::QUEEN,
-            FaceRank::KING,
-            FaceRank::ACE};
+            FaceRank::KING};
 #else
 		
         vector<Card::Suite::SuiteType> suites;

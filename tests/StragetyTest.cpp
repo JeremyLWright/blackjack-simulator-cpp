@@ -14,7 +14,7 @@ class StragetyTest : public ::testing::Test {
 
         virtual void TearDown()
         {
-            delete petfectStrat;
+            delete perfectStrat;
         }
         Hand::Ptr hand;
         BettingStragety* perfectStrat;
@@ -25,10 +25,10 @@ TEST_F(StragetyTest, Stands)
     auto fst = new Casino::Card(2, Casino::Card::Suite::CLUBS);
     auto snd = new Casino::Card(2, Casino::Card::Suite::CLUBS);
 
-    hand.Add(fst);
-    hand.Add(snd);
+    hand->Add(fst);
+    hand->Add(snd);
     
     auto dealerfst = new Casino::Card(2, Casino::Card::Suite::CLUBS);
 
-    EXPECT_EQ(true, perfectStrat->Hit(hand, dealerfst));
+    EXPECT_EQ(true, perfectStrat->Hit(*hand, dealerfst));
 }

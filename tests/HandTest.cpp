@@ -10,13 +10,10 @@ using namespace Casino;
 TEST(HandTest, ValueTests)
 {
     Table t; BlackjackPlayer jeremy; Hand hand(jeremy);
-    auto rank_9 = new Card::ValueRank(9);
-    auto rank_7 = new Card::ValueRank(7);
-    auto rank_5 = new Card::ValueRank(5);
 
-    hand.Add(new Card(*rank_5, Card::Suite::CLUBS));
-    hand.Add(new Card(*rank_7, Card::Suite::CLUBS));
-    hand.Add(new Card(*rank_9, Card::Suite::CLUBS));
+    hand.Add(new Card(5, Card::Suite::CLUBS));
+    hand.Add(new Card(7, Card::Suite::CLUBS));
+    hand.Add(new Card(9, Card::Suite::CLUBS));
     
     EXPECT_EQ(21, hand.Value());
 }
@@ -25,26 +22,22 @@ TEST(HandTest, ValueTest2)
 {
     Table t; BlackjackPlayer jeremy; Hand hand(jeremy);
 
-    auto rank_6 = new Card::ValueRank(6);
-    hand.Add(new Card(*rank_6, Card::Suite::CLUBS));
+    hand.Add(new Card(6, Card::Suite::CLUBS));
     hand.Add(new AceCard(Card::Suite::CLUBS));
     
     EXPECT_EQ(17, hand.Value());
-    auto rank_3 = new Card::ValueRank(3);
-    hand.Add(new Card(*rank_3, Card::Suite::CLUBS));
+    hand.Add(new Card(3, Card::Suite::CLUBS));
     EXPECT_EQ(20, hand.Value());
 }
 
 TEST(HandTest, ValueTest4)
 {
     Table t; BlackjackPlayer jeremy; Hand hand(jeremy);
-    auto rank_6 = new Card::ValueRank(6);
-    hand.Add(new Card(*rank_6, Card::Suite::CLUBS));
+    hand.Add(new Card(6, Card::Suite::CLUBS));
     hand.Add(new AceCard(Card::Suite::CLUBS));
    
     EXPECT_EQ(17, hand.Value());
-    auto rank_8 = new Card::ValueRank(8);
-    hand.Add(new Card(*rank_8, Card::Suite::CLUBS));
+    hand.Add(new Card(8, Card::Suite::CLUBS));
     EXPECT_EQ(15, hand.Value());
 }
 
@@ -56,12 +49,10 @@ TEST(HandTest, ValueTest5)
     hand.Add(new AceCard(Card::Suite::CLUBS));
     EXPECT_EQ(12, hand.Value());
 
-    auto rank_8 = new Card::ValueRank(8);
-    hand.Add(new Card(*rank_8, Card::Suite::CLUBS));
+    hand.Add(new Card(8, Card::Suite::CLUBS));
     EXPECT_EQ(20, hand.Value());
 
-    auto rank_2 = new Card::ValueRank(2);
-    hand.Add(new Card(*rank_2, Card::Suite::CLUBS));
+    hand.Add(new Card(2, Card::Suite::CLUBS));
     EXPECT_EQ(12, hand.Value());
 }
 
