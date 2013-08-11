@@ -36,10 +36,6 @@ namespace Casino {
     Card::Suite::Suite(SuiteType value):
         _value(value)
     {
-		if(!IsValidSuite(value))
-		{
-			throw logic_error("Invalid Suite when trying to construct Card::Suite::Suite");
-		}
 	}
 
     string Card::Suite::ToString() const
@@ -66,91 +62,17 @@ namespace Casino {
         return ss.str();
     }
 
-    bool Card::Rank::operator<(const Rank& rhs) const
-    {
-        return (this->Value() < rhs.Value());
-    }
-
-    bool Card::Rank::operator==(const Rank& rhs) const
-    {
-        return (this->Value() == rhs.Value());
-    }
-
     bool Card::Suite::operator==(const Suite& rhs) const
     {
         return (this->_value == rhs._value);
     }
 
-    /** Rank Methods **/
-    Card::FaceRank::FaceRank(Card::Rank::RankType value):
-        value_(value)
-    {
-    }
-
-    Card::FaceRank::~FaceRank()
-    {
-
-    }
-
-    Card::ValueRank::ValueRank(int value):
-        value_(value)
-    {
-    }
-
-    Card::ValueRank::~ValueRank()
-    {
-    }
-
-    string Card::FaceRank::ToString() const
-    {
-        stringstream ss;
-        switch(value_)
-        {
-            case JACK:
-                ss << "J";
-                break;
-            case QUEEN:
-                ss << "Q";
-                break;
-            case KING:
-                ss << "K";
-                break;
-            case ACE:
-                ss << "A";
-                break;
-        }
-        return ss.str();
-    }
-
-    string Card::ValueRank::ToString() const
-    {
-        stringstream ss;
-        ss << value_;
-        return ss.str();
-    }
-
-
-    int Card::FaceRank::Value() const
-    {
-        return 10;
-    }
-
-    int Card::ValueRank::Value() const
-    {
-        return value_;
-    }
 
     /** Card Methods **/
-    Card::Card(Rank const & rank, Suite const & suite):
+    Card::Card(int rank, Suite const & suite):
         _rank(rank),
         _suite(suite)
     {
-		if(!IsValidSuite(suite))
-		{
-			stringstream ss;
-			ss << "Invalid Suite when trying to construct Card::Card(rank=" << rank.ToString() << ",suite=???);";
-			throw logic_error(ss.str());
-		}
     }
 
     Card::~Card()
@@ -160,13 +82,13 @@ namespace Casino {
     string Card::ToString() const
     {
         stringstream ss;
-        ss << _rank.ToString() << " of " << _suite.ToString();
+        ss << _rank << " of " << _suite.ToString();
         return ss.str();
     }
 
-    int Card::rank() const
+    int Card::Rank() const
     {
-        return _rank.Value();
+        return _rank;
     }
 
     int Card::SoftValue() const
@@ -176,7 +98,7 @@ namespace Casino {
 
     int Card::HardValue() const
     {
-        return _rank.Value();
+        return _rank;
     }
 
     bool Card::OfferInsurance() const
@@ -186,25 +108,18 @@ namespace Casino {
 
     bool Card::operator==(const Card& rhs) const
     {
-        cerr << "comparing " << rhs._rank.Value() << " to " << _rank.Value() << endl;
-        return (this->_rank.Value() == rhs._rank.Value()) && (this->_suite == rhs._suite);
+        return (this->_rank == rhs._rank) && (this->_suite == rhs._suite);
     }
 
     bool Card::operator<(const Card& rhs) const
     {
-        cerr << "comparing " << rhs._rank.Value() << " to " << _rank.Value() << endl;
-        return ((this->_rank.Value()) < rhs._rank.Value());
+        return ((this->_rank) < rhs._rank);
     }
 
-    FaceCard::FaceCard(Rank const & rank, Suite const & suite):
-        Card(rank, suite)
+    FaceCard::FaceCard(FaceRank rank, Suite const & suite):
+        _rank(rank),
+        _suite(suite)
     {
-		if(!IsValidSuite(suite))
-		{
-			stringstream ss;
-			ss << "Invalid Suite when trying to construct Card::FaceCard(rank=" << rank.ToString() << ",suite=???);";
-			throw logic_error(ss.str());
-		}
     }
 
     FaceCard::~FaceCard()
@@ -223,14 +138,8 @@ namespace Casino {
     }
 
     AceCard::AceCard(Suite const & suite):
-        Card(*(new FaceRank(Card::Rank::ACE)), suite)
+        _suite(suite)
     {
-		if(!IsValidSuite(suite))
-		{
-			stringstream ss;
-			ss << "Invalid Suite when trying to construct Card::AceCard(rank=ACE,suite=???);";
-			throw logic_error(ss.str());
-		}
     }
 
     AceCard::~AceCard()

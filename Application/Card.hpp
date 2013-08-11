@@ -32,64 +32,40 @@ namespace Casino {
                     SuiteType _value;
             };
 
-            class Rank { 
-                public:
-                    enum RankType {
-                        JACK,
-                        QUEEN,
-                        KING,
-                        ACE,
-                    };
-                    virtual ~Rank(){}
-                    virtual string ToString() const = 0;
-                    virtual int Value() const = 0;
-                    virtual bool operator<(const Rank& rhs) const;
-                    virtual bool operator==(const Rank& rhs) const;
-            };
-
-            class FaceRank : public Rank {
-                public:
-                    FaceRank(Card::Rank::RankType value);
-                    virtual ~FaceRank();
-                    virtual string ToString() const;
-                    virtual int Value() const;
-                private:
-                    RankType value_;
-            };
-
-            class ValueRank : public Rank {
-                public:
-                    ValueRank(int value);
-                    virtual ~ValueRank();
-                    virtual string ToString() const;
-                    virtual int Value() const;
-                private:
-                    int value_;
-            };
-
-
-            Card(Rank const & rank, Suite const & suite);
+            Card(int rank, Suite const & suite);
             virtual ~Card();
-            virtual int rank() const ;
+            virtual int Rank() const ;
             virtual int SoftValue() const;
             virtual int HardValue() const;
             virtual bool OfferInsurance() const;
             virtual std::string ToString() const;
             virtual bool operator==(const Card& rhs) const;
             virtual bool operator<(const Card& rhs) const;
-
         protected:
-            Rank const & _rank;
+            Card();
+
+        private:
+            int const _rank;
             Suite const & _suite;
+    };
+    
+    enum class FaceRank {
+        JACK,
+        QUEEN,
+        KING,
+        ACE
     };
 
     class FaceCard : public Card {
         public: 
             typedef FaceCard* Ptr;
-            FaceCard(Rank const & rank, Suite const & suite);
+            FaceCard(FaceRank rank, Suite const & suite);
             virtual ~FaceCard();
             virtual int SoftValue() const;
             virtual int HardValue() const;
+        private:
+            FaceRank const _rank;
+            Suite const & _suite;
     };
 
     class AceCard : public Card {
@@ -100,6 +76,8 @@ namespace Casino {
             virtual int SoftValue() const;
             virtual int HardValue() const;
             virtual bool OfferInsurance() const;
+        private:
+            Suite const & _suite;
     };
 }
 #endif /* end of include guard: _CARD */
