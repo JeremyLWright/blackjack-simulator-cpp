@@ -31,7 +31,7 @@
 
 
 /**
- * \page assign1 Assigment 1 - Unit Testing
+ * \page assign1 Assignment 1 :: Unit Testing
  * This project is about an agile concept called Red-Green Refactoring. Essentially, it means that you write the test first then, you write the code.
 
 This helps you think about the class, and how it will be used. Also, by designing the test first, you are guaranteed to build a testable interface. Frequently, we will draw up a design only to discover later that such an interface is difficult, or unwieldy. Red-Green refactoring prevents this costly mistake.
@@ -55,29 +55,25 @@ Requirements
 
 Instructions
 ------------
-1. Follow the video instructions to configure your tools and complete assignment 1.
-1. Use the included .hgrc file to configure your mercurial. 
+-# Follow the video instructions to configure your tools and complete assignment 1.
+-# Use the included .hgrc file to configure your mercurial. 
  */
 
 /**
- * \page assign2 Assigment 2 :: Card Classes
+ * \page assign2 Assignment 2 :: Card Classes
 
 This project will you will begin hacking the Blackjack program. The base framework and initial tests are provided in a mercurial bundle file. You will merge in this bundle to your own repository. Next, you will model the 3 card types in Blackjack. Unit Tests will be a valuable part of this project since the rest of your projects will uses these card classes extensively. Some base unit tests are provided. Your grade is based on these base tests. However the test coverage of the base project is poor, and I encourage you to write your own tests.
 
 This base framework uses inheritance, and composition where appropriate for the design. Study when inheritance vs composition. One is not necessarily better than the other. Once we complete the base implementation, we’ll be able to script player behavior to evaluate betting strategies, using the Lua scripting language.
 
 Objectives
+----------
+- Merge in the base project bundle.
+- Complete three classes: Casino::Card, Casino::FaceCard, and Casino::AceCard
+- Create unit tests for methods. 100% coverage is not required, but these are core classes. The more robust they are, the easier the rest of the project will be.
+- Push to bitbucket.
+- Turn in the tag URL on Blackboard 
 
-* Merge in the base project bundle.
-
-* Complete three classes: Card, FaceCard, and AceCard
-
-* Create unit tests for methods. 100% coverage is not required, but these are core classes. The more robust they are, the easier the rest of the project will be.
-
-* Push to bitbucket.
-
-* Turn in the tag URL on Blackboard 
-*
 * | Card | Hard Value | Soft Value | Rank |
 * |------|------------|------------|------|
   | Ace | 11 | 1 | 11 |
@@ -94,73 +90,126 @@ Objectives
 | 3 | 3 | 3 | 3|
 | 2 | 2 | 2 | 2| 
 
-Reference the Card Class documentation.
-
-1. Merge in the project2.bundle (See below)
-
-2. Implement your 3 classes.
-
-3. All Cards tests must pass to get full credit.
-
-4. Commit, and Tag this as: Assignment2_XX (where XX is a counter starting at 00)
+Instructions
+------------
+-# Merge in the project2.bundle (See below)
+-# Implement your 3 classes.
+-# All Cards tests must pass to get full credit.
+-# Commit, and Tag this as: Assignment2_XX (where XX is a counter starting at 00)
 
 Merging in Mercurial
-
+--------------------
 Merging is a very common task in programming as part of a team. This project is to demonstrate how easily one can share code with another person using Mercurial. I completed the base framework of the application and created a “bundle”. A bundle is easy to make: simply type hg bundle before you type hg push and a zip archive will be created with the outgoing changes. This file is then easy to email to someone. In this scenario, I created the bundle, and I want you to merge in my changes to your own repository.
-
-* Copy the bundle file to general.asu.edu
-
-* On general.asu.edu, navigate to your working copy. Assure there are not any outstanding change by typing hg status.
-
-o hg status should return with no changes.
-
-* Merge in the project2 base project by "pulling" changes from my zip bundle
-
-o hg pull ../project2.bundle
-
-o hg merge
-
-* Now commit to save the merge result.
-
-o hg commit
-
-* Now use cmake like you normally do.
-
-o mkdir build #You probably already have this….
-
-o cd build
-
-o cmake ..
-
-o make
-
-* Run the unit tests
-
-o ./unit-test
+- Copy the bundle file to general.asu.edu
+- On general.asu.edu, navigate to your working copy. Assure there are not any outstanding change by typing hg status.
+    - hg status should return with no changes.
+- Merge in the project2 base project by "pulling" changes from my zip bundle
+    - hg pull ../project2.bundle
+    - hg merge
+- Now commit to save the merge result.
+    - hg commit
+- Now use cmake like you normally do.
+    - mkdir build #You probably already have this….
+    - cd build
+    - cmake ..
+    - make
+- Run the unit tests
+    - ./unit-test
 
 You should have a pile of failing unit tests now. Each project will be to fix a small number of them. In this project you only need to make the Card tests pass. Note this means that when you complete Project 1 some tests will still be failing; this is okay. 
 
 /**
- * \page assign3 Assigment 3
- * In assignment 1
+ * \page assign3 Assignment 3 :: Hand Class
+ * 
+ * In this project you will use the Card classes you built in project 3 to build a Hand. The Hand is used in the game to determine a winner. Tests will be provided for the assignment. With this base level of functionality, you can extend the hand to full out the semantics of the game.
+
+Objectives
+----------
+- Build 1 class: Casino::Hand
+- Enable the Hand Tests (tests/HandTest.cpp)
+- Push to bitbucket.
+- Turn in the tag URL on Blackboard 
+
+Instructions
+------------
+-# Enable the Hand Tests by changing the code in HandTest.cpp (Figure 1) to look like Figure 2.
+    -# These tests were disabled because the cause segmentation faults until Card is properly implemented.
+-# All tests in the HandTest group should pass.
+-# Commit, and Tag this as: Assignment3_vXX 
  */
 
 /**
- * \page assign4 Assigment 4
- * In assignment 1
+ * \page assign4 Assignment 4 :: Bet and Odds Classes
+ In this project you will use the pass the final HandTest.Bet and the Bets.WinLose tests. The Bet class is a way of abstraction out the odds calculation which makes it easier to track the money changing hands in the game.
+
+Objectives
+----------
+- Complete methods for the Casino::Bet Class
+- Complete methods for the Casino::Odds Class
+- Make the following tests pass
+    - HandTest.Bet
+    - Bets.WinLose
+    - Oddss.WinAmount
+    - Oddss.Compare
+- Push to bitbucket
+- Turn in the tag URL on Blackboard
+
+Instructions
+------------
+
+- All tests described in the Objectives should pass.
+- Commit, and Tag this as: Assignment4_vXX 
  */
 
 /**
- * \page assign5 Assigment 5
- * In assignment 1
+ * \page assign5 Assignment 5 :: Deck Factory
+ In this project you will use the Card classes you built in project 4 to build a deck for dealing. The deck requires a specific and detailed construction. The Factory Pattern fits this need to construct complex objects.
+
+The Shoe object is used to deal a deck of cards. It manages shuffling, and tells the dealer which to reshuffle. The stop is a card counting counter measure, since it add entropy to decks.
+
+Objectives
+----------
+- Complete 2 class: Casino::DeckFactory, and Casino::Shoe
+- Create 1 unit test of your own
+- Push to bitbucket.
+- Turn in the tag URL on Blackboard 
+
+Tests
+-----
+-# Pass DeckFactoryTest.Simple
+-# Pass ShoeTest.Simple
+-# Design a test for Casino::Shoe::Draw()
+    -# Design your own test that create a new shoe, and draws all the cards from the shoe. Verify that the final card (the “53rd” card) is a nullptr
+
+Instructions
+------------
+-# Pass all 2 given Unit Tests.
+-# Write your own test to verify the Shoe::Draw method.
+-# Commit, and Tag this as: Assignment5_vXX
+-# Turn in your Project URL and Tag on Blackboard 
+ 
  */
 
 /**
- * \page assign6 Assigment 6
- * In assignment 1
+ * \page assign6 Assignment 6 :: Blackjack Game Class
+ This class leverages all the classes you’ve built up to this point. This class also uses Mock Test which verify Behavior instead of just return values. The Mock tests verify that game runs correctly according to the rules blackjack. This is done not by verifying return values but verifying specific functions are called in the right order, and the right number of times.
+
+Objectives
+----------
+- ALL tests in the unit-test test Suite should pass. There shall be no failing tests at this point.
+
+- Complete the Casino::BlackjackGame class.
+- Push to bitbucket.
+- Turn in the tag URL on Blackboard
+
+Instructions
+------------
+-# Pass all given Unit Tests.
+-# Commit, and Tag this as: Assignment6_vXX
+-# Turn in your Project URL and Tag on Blackboard 
  */
 
 /**
- * \page assign7 Assigment 7
+ * \page assign7 Assignment 7 :: System Simulation
  * In assignment 1
  */

@@ -25,22 +25,20 @@ namespace Casino {
     class Shoe {
         public:
             typedef vector<Card::Ptr>::const_iterator itr_type;
+            /** Initialize a show with a given number of decks */
             Shoe (int decks=1);
 			virtual ~Shoe ();
+            /** Draw the next card from the shoe. */
 			virtual Card::Ptr Draw();
+
+            /** Shuffle the shoe of cards. */
             virtual void Shuffle();
-#if 1
             virtual vector<Card*>::const_iterator begin();
             virtual vector<Card*>::const_iterator end();
-#endif
         private:
             vector<Card::Ptr> _decks;
             vector<Card::Ptr>::const_iterator _deal;
     };
-#if 0
-    template <class C> auto begin(Shoe& s) -> decltype(s.begin());
-    template <class C> auto end(Shoe& s) -> decltype(s.end());
-#endif
 } /* Casino */
 #endif /* end of include guard: _SHOE */
 

@@ -17,6 +17,9 @@ namespace Casino {
 
     class DeckFactory {
         public:
+            /**
+             * Return a proper 52 card deck. (Does not need to be sorted)
+             */
         static vector<Card::Ptr> GetDeck();
     };
 

@@ -18,7 +18,10 @@ namespace Casino {
     public:
         Odds (string Name, pair<double, double> Odds);
         virtual ~Odds();
+
+        /**  Multiple operator for the odds and a number */
         friend double operator*(Odds const & lhs, double Amount);
+        /**  Multiple operator for the odds and a number */
         friend double operator*(double Amount, Odds const & rhs);
         
         bool operator==(Odds const & rhs) const;

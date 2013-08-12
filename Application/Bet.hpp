@@ -17,9 +17,22 @@ namespace Casino {
     class Bet {
     public:
         Bet();
+        /**
+         * Initialized the Odd amount
+         * - Blackjack bets pay out 3:2
+         * - Instance bets pay out 2:1
+         * This is a generic class independent of the odds themselves.
+         */
         Bet (double Amount, Odds odds);
         virtual ~Bet ();
+        /** Calculate the amount won my the player, by multiplying the odds by
+         * the amount wagered.
+         */
         virtual double WinAmount() const;
+
+        /** Calculate the amount lost by the player, typically just the wager
+         * itself.
+         */
         virtual double LoseAmount() const;
         virtual string ToString() const;
 

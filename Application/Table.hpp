@@ -32,10 +32,22 @@ namespace Casino {
     class Table {
     public:
 		typedef Table* Ptr;
+        /** Initialize a table with the given limit, default to 1000 */
         Table (int limit=1000);
         virtual ~Table ();
+
+        /** Place a bet on the table, essure the bet does not exceed the table
+         * limit.
+         */
         void PlaceBet(Bet* bet, Hand* hand);
+
+        /** Initialize a new game by clearing all the bets.
+         */
         void NewGame();
+
+        /** 
+         * Verify a bet is valid against the table limit.
+         */
         bool IsValid(Bet& bet) const;
         string ToString() const;
     private:

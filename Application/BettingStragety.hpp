@@ -7,19 +7,36 @@
 namespace Casino {
 class BettingStragety {
     public:
+
+    /**
+     * Does the player choose EvenMoney?
+     */
     virtual bool EvenMoney(Hand& hand, Card::Ptr dealer) const = 0;
+
+    /** 
+     * Does the player want insurance?
+     */
     virtual bool Insurance(Hand& hand, Card::Ptr dealer) const = 0;
+
+    /**
+     * Does the Player want to split the hand (offered for doubles)?
+     */
     virtual bool Split(Hand& hand, Card::Ptr dealer) const = 0;
+
+    /**
+     * Does the player want to double down?
+     */
     virtual bool DoubleDown(Hand& hand, Card::Ptr dealer) const = 0;
+
+    /** 
+     * Does the player want to hit, or stand?
+     */
     virtual bool Hit(Hand& hand, Card::Ptr dealer) const = 0;
 };
 
-class HumanPlayer : public BettingStragety {
-
-};
-
 class PerfectBlackjack : public BettingStragety {
-    /*
+    /* The following are the decisions to play statistically perfect blackjack.
+     * Source: wikipedia.org
 Player hand 	Dealer's face-up card
                 2 	3 	4 	5 	6 	7 	8 	9 	10 	A
                 Hard totals (excluding pairs)
