@@ -4,6 +4,10 @@
 #include <gtest/gtest.h>
 using namespace std;
 using namespace Casino;
+/** 
+ * \test Unit test for Casino::Card.  Sorts the cards, to verify that the Hard Values function properly.
+ * 
+ */
 TEST(Cards, CardSort)
 {
     vector<Casino::Card*> cards;
