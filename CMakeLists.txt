@@ -28,7 +28,17 @@ if( MSVC )
 			
  endif()
 
-file(GLOB UNIT_TESTS tests/*.cpp)
+file(GLOB ASSIGN_01_TESTS tests/01/*.cpp)
+file(GLOB ASSIGN_02_TESTS tests/02/*.cpp)
+file(GLOB ASSIGN_03_TESTS tests/03/*.cpp)
+file(GLOB ASSIGN_04_TESTS tests/04/*.cpp)
+file(GLOB ASSIGN_05_TESTS tests/05/*.cpp)
+file(GLOB ASSIGN_06_TESTS tests/06/*.cpp)
+file(GLOB ASSIGN_07_TESTS tests/07/*.cpp)
+
+set(UNIT_TESTS ${ASSIGN_01_TESTS} ${ASSIGN_02_TESTS} ${ASSIGN_03_TESTS}
+    ${ASSIGN_04_TESTS} ${ASSIGN_05_TESTS} ${ASSIGN_06_TESTS} ${ASSIGN_07_TESTS})
+
 set(MAIN_FILE main.cpp)
 set(APPLICATION_CODE_FILES  
     Application/Card.cpp 
