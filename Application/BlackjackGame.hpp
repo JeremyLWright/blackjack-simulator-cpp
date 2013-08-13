@@ -16,6 +16,9 @@
 #include "Hand.hpp"
 using namespace std;
 namespace Casino {
+    /**
+     * \brief Runs the blackjack Game \ref assign6
+     */
     class BlackjackGame {
     public:
         /**

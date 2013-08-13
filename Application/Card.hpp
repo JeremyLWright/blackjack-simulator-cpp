@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace Casino {
-
+    /** \brief Logic of a single card \ref assign2*/
     class Card {
         public:
             typedef Card* Ptr;
@@ -81,6 +81,7 @@ namespace Casino {
         KING
     };
 
+    /** \brief Logic of a Jack, Queen or King card \ref assign2*/
     class FaceCard : public Card {
         public: 
             typedef FaceCard* Ptr;
@@ -100,7 +101,7 @@ namespace Casino {
             FaceRank const _rank;
             Suite const & _suite;
     };
-
+    /** \brief Logic of an Ace Card respecting Soft/Hard \ref assign2 */
     class AceCard : public Card {
         public: 
             typedef AceCard* Ptr;

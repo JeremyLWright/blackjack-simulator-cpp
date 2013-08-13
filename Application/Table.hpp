@@ -28,7 +28,8 @@ namespace Casino {
         int tableLimit_;
 
     };
-
+    /** \brief container for bets and a reference to the players at tht table.
+     * \ref assign6 */
     class Table {
     public:
 		typedef Table* Ptr;

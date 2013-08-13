@@ -5,6 +5,11 @@
 #include "Card.hpp"
 #include <algorithm>
 namespace Casino {
+    /** 
+     * \brief Sets up a stragety to automate player decisions. Or defer decision to
+     * an actual player i.e. console commands
+     * \ref assign7
+     */
 class BettingStragety {
     public:
 
@@ -34,6 +39,9 @@ class BettingStragety {
     virtual bool Hit(Hand& hand, Card::Ptr dealer) const = 0;
 };
 
+/**
+ * \brief Example stragety for playing perfect blackjack. \ref assign7
+ */
 class PerfectBlackjack : public BettingStragety {
     /* The following are the decisions to play statistically perfect blackjack.
      * Source: wikipedia.org

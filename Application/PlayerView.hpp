@@ -8,6 +8,8 @@
 using namespace std;
 
 namespace Casino {
+    /** \brief interface to a real life player, or an automated stragety \ref
+     * assign7 */
     class PlayerView {
     public:
         PlayerView ()
@@ -55,6 +57,8 @@ namespace Casino {
         /* data */
     };
 
+    /** \brief View to cout/cin command to interace with a real person \ref
+     * assign7 */
     class ConsoleView : public PlayerView {
     public:
         ConsoleView ();
@@ -106,7 +110,9 @@ namespace Casino {
     };
     
 
-
+    /** \brief View to a perfect stragety for automated play testing
+     * \ref assign7
+     */
     class PerfectView : public PlayerView {
     public:
         PerfectView ()

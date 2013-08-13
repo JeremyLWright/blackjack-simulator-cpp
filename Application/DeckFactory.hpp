@@ -14,7 +14,7 @@
 #include "Card.hpp"
 
 namespace Casino {
-
+    /** \brief Creates a proper 52-card deck \ref assign5 */
     class DeckFactory {
         public:
             /**

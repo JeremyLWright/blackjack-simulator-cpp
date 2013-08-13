@@ -1,5 +1,4 @@
 /**
- * @brief Determins the result of a bet, for given odds
  *
  * @par
  * Copyright Jeremy Wright (c) 2012 
@@ -14,6 +13,7 @@
 #include <utility>
 using namespace std;
 namespace Casino {
+    /** @brief Determins the result of a bet, for given odds \ref assign4 */
     class Odds {
     public:
         Odds (string Name, pair<double, double> Odds);

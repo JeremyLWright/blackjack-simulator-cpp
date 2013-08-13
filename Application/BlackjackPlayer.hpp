@@ -16,6 +16,9 @@
 
 
 namespace Casino {
+    /** \brief Logic of a blackjack player. Player decisions are deferred to
+     * the view. \ref assign6
+     */
     class BlackjackPlayer {
     public:
         /**

@@ -21,7 +21,9 @@ namespace Casino {
         {
         }
     };
-
+    /** \brief Container for shuffling and dealing cards.
+     * \ref assign5
+     */
     class Shoe {
         public:
             typedef vector<Card::Ptr>::const_iterator itr_type;

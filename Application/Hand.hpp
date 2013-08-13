@@ -16,6 +16,9 @@ namespace Casino {
 
     using namespace std;
     class BlackjackPlayer;
+    /** \brief Simple container to store cards and their associated bet
+     * referenced to a BlackjackPlayer \ref assign3
+     */
     class Hand {
         public:
             typedef Hand* Ptr;

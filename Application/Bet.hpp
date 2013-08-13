@@ -1,7 +1,4 @@
 /**
- * @brief Bet class for determining the outcome of a bet associated with
- * a player
- *
  * @par
  * Copyright Jeremy Wright (c) 2012 
  * Creative Commons Attribution-ShareAlike 3.0 Unported License.
@@ -14,6 +11,12 @@
 using namespace std;
 
 namespace Casino {
+    /**
+     * Bet class for determining the outcome of a bet associated with
+ * a player
+     * \brief Abstracts a wager for the player to place on the table.
+     * \ref assign4
+     */
     class Bet {
     public:
         Bet();
