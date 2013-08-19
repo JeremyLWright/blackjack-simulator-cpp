@@ -1,8 +1,8 @@
 #include <gmock/gmock.h>
-#include "Application/Card.hpp"
-#include "Application/Table.hpp"
-#include "Application/BlackjackGame.hpp"
-#include "Application/Shoe.hpp"
+#include "Card.hpp"
+#include "Table.hpp"
+#include "BlackjackGame.hpp"
+#include "Shoe.hpp"
 
 using ::testing::Return;
 using ::testing::_;

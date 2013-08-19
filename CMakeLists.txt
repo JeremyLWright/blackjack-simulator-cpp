@@ -28,37 +28,36 @@ if( MSVC )
 			
  endif()
 
-file(GLOB ASSIGN_01_TESTS tests/01/*.cpp)
-file(GLOB ASSIGN_02_TESTS tests/02/*.cpp)
-file(GLOB ASSIGN_03_TESTS tests/03/*.cpp)
-file(GLOB ASSIGN_04_TESTS tests/04/*.cpp)
-file(GLOB ASSIGN_05_TESTS tests/05/*.cpp)
-file(GLOB ASSIGN_06_TESTS tests/06/*.cpp)
-file(GLOB ASSIGN_07_TESTS tests/07/*.cpp)
+file(GLOB ASSIGN_01_TESTS testsuite/01/*.cpp)
+file(GLOB ASSIGN_02_TESTS testsuite/02/*.cpp)
+file(GLOB ASSIGN_03_TESTS testsuite/03/*.cpp)
+file(GLOB ASSIGN_04_TESTS testsuite/04/*.cpp)
+file(GLOB ASSIGN_05_TESTS testsuite/05/*.cpp)
+file(GLOB ASSIGN_06_TESTS testsuite/06/*.cpp)
+file(GLOB ASSIGN_07_TESTS testsuite/07/*.cpp)
 
 set(UNIT_TESTS ${ASSIGN_01_TESTS} ${ASSIGN_02_TESTS} ${ASSIGN_03_TESTS}
     ${ASSIGN_04_TESTS} ${ASSIGN_05_TESTS} ${ASSIGN_06_TESTS} ${ASSIGN_07_TESTS})
 
-set(MAIN_FILE main.cpp)
+set(MAIN_FILE src/main.cpp)
 set(APPLICATION_CODE_FILES  
-    Application/Card.cpp 
-    Application/DeckFactory.cpp 
-    Application/Shoe.cpp 
-    Application/Hand.cpp 
-    Application/Bet.cpp 
-    Application/Odds.cpp 
-    Application/Table.cpp 
-    Application/BlackjackPlayer.cpp 
-    Application/BlackjackGame.cpp)
+    src/Card.cpp 
+    src/DeckFactory.cpp 
+    src/Shoe.cpp 
+    src/Hand.cpp 
+    src/Bet.cpp 
+    src/Odds.cpp 
+    src/Table.cpp 
+    src/BlackjackPlayer.cpp 
+    src/BlackjackGame.cpp)
 ##############################################################################
 ###### YOU ARE NOT REQUIRED TO EDIT BELOW THIS LINE               ############
 ##############################################################################
 
-include_directories(gmock/gtest/include)
-add_subdirectory(gmock) #Build all the gtest stuff
-include_directories(gmock/include)
-include_directories(.)
-include_directories(Application)
+include_directories(util/gmock/gtest/include)
+add_subdirectory(util/gmock) #Build all the gtest stuff
+include_directories(util/gmock/include)
+include_directories(src)
 
 add_executable(blackjack ${MAIN_FILE})
 target_link_libraries(blackjack application_code)

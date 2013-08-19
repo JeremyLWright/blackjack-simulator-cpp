@@ -1,1 +1,1 @@
-gmock = [svn]http://googlemock.googlecode.com/svn/tags/release-1.6.0
+util/gmock = [svn]http://googlemock.googlecode.com/svn/tags/release-1.6.0

@@ -1,9 +1,9 @@
 #ifndef _MAIN
 #define _MAIN
 
-#include "Application/BlackjackGame.hpp"
-#include "Application/BlackjackPlayer.hpp"
-#include "Application/Table.hpp"
+#include "BlackjackGame.hpp"
+#include "BlackjackPlayer.hpp"
+#include "Table.hpp"
 #include <iostream>
 
 using namespace std;
