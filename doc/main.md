@@ -1,4 +1,5 @@
-\mainpage CSE-394 Semester Blackjack Project
+
+\mainpage Welcome
 
 In this class we will build a blackjack simulator. We will leverage such
 design patterns and Observer, MVC, and Abstract Factory.
