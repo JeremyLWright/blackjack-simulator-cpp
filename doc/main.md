@@ -16,6 +16,7 @@ to you, and this will for the basis for your grade.
 Each week you will received a set of classes to make tests pass. Initially
 the tests will be failing, once the code is complete the test cases will turn
 green.  Green tests will received full credit. 
+
 Syllabus
 ========
 \subpage syllabus
