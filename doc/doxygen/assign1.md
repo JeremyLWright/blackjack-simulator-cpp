@@ -22,5 +22,5 @@ Requirements
 
 Instructions
 ------------
--# Follow the video instructions to configure your tools and complete assignment 1.
--# Use the included .hgrc file to configure your mercurial. 
+-# Follow the [video instructions](../media/Assignment1.mp4) to configure your tools and complete assignment 1.
+-# Use the included [.hgrc](../media/hgrc_template) file to configure your mercurial. 

@@ -1,3 +1,4 @@
 \page Lectures Lecture Notes for CSE-394
 
--# [Welcome](../lecture/01.html)
+- [Welcome](../lecture/01.html)
+- [Version Control](../lecture/VersionControl.html)
