@@ -42,19 +42,19 @@ Course Topics
 | Date       | Lecture Topic                                         | Assignment Due  |
 | ---------- | -----------------------------------------------       | --------------- |
 | 8/28/2013  | Version Control with Mercurial                        |                 |
-| 9/4/2013   | Unit Testing with GTest                               | Project #1      |
+| 9/4/2013   | Unit Testing with GTest                               | [Project #1](@ref assign1)      |
 | 9/11/2013  | Pointer Review                                        |                 |
-| 9/18/2013  | Anatomy of the C++ Class                              | Project #2      |
+| 9/18/2013  | Anatomy of the C++ Class                              | [Project #2](@ref assign2)      |
 | 9/25/2013  | Polymorphism Part 1                                   |                 |
-| 10/2/2013  | Polymorphism Part 2                                   | Project #3      |
+| 10/2/2013  | Polymorphism Part 2                                   | [Project #3](@ref assign3)      |
 | 10/9/2013  | Introduction to Error Handling                        |                 |
-| 10/23/2013 | Exceptions in C++                                     | Project #4      |
+| 10/23/2013 | Exceptions in C++                                     | [Project #4](@ref assign4)      |
 | 10/30/2013 | Guest Lecture Comprehensive Error Handling            |                 |
-| 11/6/2013  | Compile-Time Polymorphism                             | Project #5      |
+| 11/6/2013  | Compile-Time Polymorphism                             | [Project #5](@ref assign5)      |
 | 11/13/2013 | C++ Idioms (Design Patterns Part 1)                   |                 |
-| 11/20/2013 | Anderson Smart Pointer Idiom (Design Patterns Part 2) | Project #6      |
+| 11/20/2013 | Anderson Smart Pointer Idiom (Design Patterns Part 2) | [Project #6](@ref assign6)      |
 | 11/27/2013 | Smart Pointers                                        |                 |
-| 12/4/2013  | const Correctness                                     | Project #7      |
+| 12/4/2013  | const Correctness                                     | [Project #7](@ref assign7)      |
 
 Through each section of the course we will apply the following principles to show how good design is independent of language features.  
 

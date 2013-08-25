@@ -21,7 +21,6 @@ Syllabus
 ========
 \subpage syllabus
 
-
 Assignments
 ===========
 - \subpage assign1
@@ -31,3 +30,7 @@ Assignments
 - \subpage assign5
 - \subpage assign6
 - \subpage assign7
+
+Lecture
+=======
+- \subpage Lectures
