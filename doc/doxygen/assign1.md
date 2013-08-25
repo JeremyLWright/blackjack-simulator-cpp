@@ -5,7 +5,7 @@ This helps you think about the class, and how it will be used. Also, by designin
 
 Objectives
 ----------
-- Clone the example project on bitbucket.org (https://bitbucket.org/jwright/cse394-spring2013)
+- Fork the example project on bitbucket.org (https://bitbucket.org/jwright/cse394-fall2013)
 - Setup Mercurial
 - Create a Unit Test that fails.
 - Commit the code.
