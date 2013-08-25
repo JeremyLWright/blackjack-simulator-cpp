@@ -49,6 +49,8 @@ set(APPLICATION_CODE_FILES
     src/Odds.cpp 
     src/Table.cpp 
     src/BlackjackPlayer.cpp 
+    src/BettingStragety.cpp
+    src/PlayerView.cpp
     src/BlackjackGame.cpp)
 ##############################################################################
 ###### YOU ARE NOT REQUIRED TO EDIT BELOW THIS LINE               ############
