@@ -1,0 +1,27 @@
+:cpp: {basebackend@docbook:c++:cpp}
+
+
+Exceptions Part 2
+=================
+
+Objectives
+----------
+* Implement a no-guanrantee function
+* Add try catch improve the guarantee to strong
+* Leverage RAII to improve the try/catch method, and maintain the
+  strong guarantee
+
+
+Some Code
+----------
+
+Look here is some code.
+
+[source,cpp]
+-----------------------------------------
+class FooParser {
+public:
+        virtual void startDocument() = 0;
+        virtual void endDocument() = 0;
+};
+-----------------------------------------
