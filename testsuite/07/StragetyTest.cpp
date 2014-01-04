@@ -43,9 +43,9 @@ class StragetyTest : public ::testing::Test {
         virtual Hand::Ptr generateHand(int value)
         {
             Hand::Ptr h = new Hand();
-            for(auto i : constrained_sum_sample(5, value))
+            for(int i = 0; i < value; ++i)
             {
-                h->Add(new Casino::Card(i, Card::Suite::CLUBS));
+                h->Add(new Casino::AceCard(Card::Suite::CLUBS));
             }
             return h;
         }
