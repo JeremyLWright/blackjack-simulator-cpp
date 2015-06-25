@@ -73,7 +73,7 @@ double ConsoleView::GetBet(double available)
 {
     auto betAmount = 1;
     cout << "Betting $" << betAmount << " of " << available << endl;
-
+	return betAmount;
 }
 void ConsoleView::Win(double amount)
 {
@@ -118,6 +118,7 @@ double PerfectView::GetBet(double available)
 {
     auto betAmount = 15;
     cout << "Betting $" << betAmount << " of " << available << endl;
+	return betAmount;
 
 }
 void PerfectView::Win(double amount)

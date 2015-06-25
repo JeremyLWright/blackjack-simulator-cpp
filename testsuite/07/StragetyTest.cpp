@@ -1,15 +1,18 @@
-#include "gtest/gtest.h"
-#include <tuple>
-#include "BettingStragety.hpp"
-#include "Hand.hpp"
-#include "Card.hpp"
-#include "BlackjackPlayer.hpp"
-#include <random>
-#include <numeric>
-#include <iostream>
-#include <vector>
 #include <algorithm>
+#include <functional>
+#include <iostream>
+#include <numeric>
+#include <random>
+#include <tuple>
 #include <utility>
+#include <vector>
+
+#include "BettingStragety.hpp"
+#include "BlackjackPlayer.hpp"
+#include "Card.hpp"
+#include "Hand.hpp"
+
+#include "gtest/gtest.h"
 
 
 template <typename T>

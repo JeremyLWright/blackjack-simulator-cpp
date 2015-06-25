@@ -21,10 +21,10 @@ namespace Casino {
 
     struct TableLimitException : public std::logic_error
     {
-        TableLimitException(int currentBetAmount, int currentCosts, int tableLimit);
+        TableLimitException(double currentBetAmount, double currentCosts, int tableLimit);
         virtual char const * what() const throw();
-        int betAmount_;
-        int tableCost_;
+        double betAmount_;
+        double tableCost_;
         int tableLimit_;
 
     };
@@ -54,7 +54,7 @@ namespace Casino {
     private:
         int limit_;
         vector<Bet*> bets_;
-        int Cost() const;
+        double Cost() const;
     };
     
 } /* Casino */

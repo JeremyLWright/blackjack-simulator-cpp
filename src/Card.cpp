@@ -74,6 +74,7 @@ namespace Casino {
         _suite(Suite(Suite::CLUBS))
     {
     }
+
     Card::Card(int rank, Suite const & suite):
         _rank(rank),
         _suite(suite)

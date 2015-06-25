@@ -36,6 +36,8 @@ namespace Casino {
                     SuiteType _value;
             };
 
+			Card& operator=(const Card&) = delete;
+
             /**
              * Create a card with the given rank and Suite
              */
@@ -72,7 +74,7 @@ namespace Casino {
 
         private:
             int const _rank;
-            Suite const & _suite;
+            Suite const _suite;
     };
     
     enum class FaceRank {

@@ -3,7 +3,7 @@
 
 using namespace std;
 namespace Casino {
-    TableLimitException::TableLimitException(int currentBetAmount, int currentCosts, int tableLimit):
+    TableLimitException::TableLimitException(double currentBetAmount, double currentCosts, int tableLimit):
         logic_error("Current Bet Exceeds Table Limit"),
 #if __GNUC__
 		betAmount_{currentBetAmount},
@@ -59,9 +59,9 @@ namespace Casino {
         return (Cost() + bet.WinAmount() < limit_);
     }
 
-    int Table::Cost() const
+    double Table::Cost() const
     {
-        auto total = 0;
+        auto total = 0.0;
         for(auto bet : bets_)
         {
             total += bet->WinAmount();

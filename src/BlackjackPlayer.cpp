@@ -54,9 +54,9 @@ namespace Casino {
         {
 			if(stake_ <= 0)
 				throw OutOfMoneyException(this);
-            auto betAmount = 1;
+            auto betAmount = 1.0;
             if(view_ != nullptr)
-                auto betAmount = view_->GetBet(stake_);
+                betAmount = view_->GetBet(stake_);
 
             stake_ -= betAmount;
             auto bet = new Bet(betAmount, Odds("Jeremy's Bet", make_pair(3,2)));
@@ -70,19 +70,19 @@ namespace Casino {
         stake_ += bet.WinAmount();
     }
 
-    void BlackjackPlayer::Lose(Bet const & bet)
+    void BlackjackPlayer::Lose(Bet const & )
     {
         //We already deducted our money
         view_->Lose();
         return;
     }
 
-    bool BlackjackPlayer::EvenMoney(Hand& hand) const
+    bool BlackjackPlayer::EvenMoney(Hand& ) const
     {
         return false;
     }
 
-    bool BlackjackPlayer::Insurance(Hand& hand) const
+    bool BlackjackPlayer::Insurance(Hand& ) const
     {
         return false;
     }
@@ -96,7 +96,7 @@ namespace Casino {
         return splitHand;
     }
 
-    bool BlackjackPlayer::DoubleDown(Hand& hand) const
+    bool BlackjackPlayer::DoubleDown(Hand& ) const
     {
         return false;
     }
