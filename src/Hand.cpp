@@ -66,7 +66,7 @@ namespace Casino {
         return total;
     }
 
-    int Hand::Size() const
+    size_t Hand::Size() const
     {
         return cards_.size();
     }

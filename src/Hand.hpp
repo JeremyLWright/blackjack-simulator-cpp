@@ -37,7 +37,7 @@ namespace Casino {
             int Value() const;
 
             /** Return the size of the hand */
-            int Size() const;
+            size_t Size() const;
 
             /** Return true if the hand is a blackjack i.e 2 cards that equal
              * 21.

@@ -27,7 +27,7 @@ TEST(Simulation, PerfectGame)
         {
             shoe.Shuffle();
         }
-        catch(OutOfMoneyException const & e)
+        catch(OutOfMoneyException const & )
         {
             cout << "Player: "<< Jeremy << " is out of Money in " << i << " games." << endl;
             break;
