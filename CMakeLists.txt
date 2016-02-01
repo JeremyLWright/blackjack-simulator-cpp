@@ -43,8 +43,7 @@ set_directory_properties(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/ThirdParty)
 # Add gmock
 ExternalProject_Add(
 	googlemock
-	#	SVN_REPOSITORY http://googlemock.googlecode.com/svn/tags/release-1.7.0
-	URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+	GIT_REPOSITORY https://github.com/google/googletest.git
 	TIMEOUT 30
 	#PATCH_COMMAND svn patch ${CMAKE_SOURCE_DIR}/gtest.patch ${CMAKE_BINARY_DIR}/ThirdParty/src/googlemock/gtest
 	# Force separate output paths for debug and release builds to allow easy
@@ -62,8 +61,8 @@ ExternalProject_Add(
 
 # Specify include dir for googlemock and googletest
 ExternalProject_Get_Property(googlemock source_dir)
-include_directories(${source_dir}/include)
-include_directories(${source_dir}/gtest/include)
+include_directories(${source_dir}/googlemock/include)
+include_directories(${source_dir}/googletest/include)
 include_directories(src)
 
 add_executable(blackjack ${MAIN_FILE})
@@ -78,11 +77,14 @@ add_dependencies(unit-test googlemock)
 if( MSVC )
 ExternalProject_Get_Property(googlemock binary_dir)
 target_link_libraries(unit-test 
-		${binary_dir}/${CMAKE_FIND_LIBRARY_PREFIXES}gmock${CMAKE_FIND_LIBRARY_SUFFIXES} 
-		${binary_dir}/gtest/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
+		${binary_dir}/googlemock/${CMAKE_FIND_LIBRARY_PREFIXES}gmock${CMAKE_FIND_LIBRARY_SUFFIXES} 
+		${binary_dir}/googlemock/gtest/${CMAKE_FIND_LIBRARY_PREFIXES}gtest_main${CMAKE_FIND_LIBRARY_SUFFIXES}
 		application_code)
 else()
 target_link_libraries(unit-test gtest gtest_main gmock rt pthread application_code)
 endif()
+
+enable_testing()
+add_test(unit-test unit-test)
 
 
